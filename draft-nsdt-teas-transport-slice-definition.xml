@@ -250,20 +250,23 @@ Legend:
     The IETF definition of a transport slice is as follows:
       </t>
       <t>
-        A transport network slice is an abstract network topology connecting a number of endpoints, with an expected objective specified through a set of service level objectives (SLO).
+        A transport network slice is an abstract network topology connecting a number of endpoints, with an expected objectives specified through a set of service level objectives (SLO).
       </t>
       <t>
-    Note that multiple transport slices can be combined together into one transport slice, in that case each segment will be called transport 
-	      
-	      
-	      or transport subnet slice. The document will consistently use the term transport subslice. Use of service level objectives help to clearly describe different network resources and corresponding parameters neccessary to describe a service.
+        Note that the Transport Slice is also called Transport Sub-Slice or Transport Slice-Subnet in different standard bodies.
+	This document consistently uses the term transport slice. Note that the Ttansport slice (or "Other Slice") is the minimum 
+        unit structure of an e2e network slice. 
+	Use of service level objectives help to clearly describe different network resources and corresponding parameters neccessary to describe a service.
       </t>
+	      
       <t>
-    A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer as shown in  <xref target="fig_Transport-NS"/>. The endpoints maybe any physical or virtual network functions (PNF/VNF) or any network service for that matter. Simillarly connections maybe virtual or physicals links of any type of technology.  
+          +++++++ place holder for transport slices (or other slices) as hierarchical concept. +++++
       </t>
-	<t>
-		place holder for transport slices (or other slices) as hierarchical concept.
-	</t>	
+	      
+      <t>
+        A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer as shown in  <xref target="fig_Transport-NS"/>. The endpoints maybe any physical or virtual network functions (PNF/VNF) or any network service for that matter. Simillarly connections maybe virtual or physicals links of any type of technology.  
+      </t>
+	
       <figure anchor="fig_Transport-NS" title="Transport slice">
         <artwork align="center"><![CDATA[
   
