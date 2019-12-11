@@ -158,9 +158,19 @@
 
     <section title="Terms and Abbreviations">
      <t>Service Level Objective (SLO): </t>
-     <t>NS ID</t>
-     <t>mMTC</t>
-     <t>URLLC</t>
+     <t>
+       NS ID: Network Slice ID which in 3GPP standard called S-NSSAI (Single-Network Slice Selection Assistance Information). 
+       It is simply and ID which uniquely identifies the E2E network slice (See <xref target="fig_Transport-NS"/>)
+     </t>
+     <t>
+       mIOT: Massive IOT (5G)
+     </t>
+     <t>
+      URLLC: Ultra reliable and low latency communications (5G)	     
+     </t>
+     <t>
+       eMBB: enhanced Mobile Broadband (5G)	     
+     </t>
 
     </section>
 
