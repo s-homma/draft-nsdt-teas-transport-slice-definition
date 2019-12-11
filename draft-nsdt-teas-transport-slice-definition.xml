@@ -264,8 +264,8 @@ Legend:
       </t>
       <t>
         Note that the Transport Slice is also called Transport Sub-Slice or Transport Slice-Subnet in different standard bodies.
-	This document consistently uses the term transport slice. Note that the Ttansport slice (or "Other Slice") is the minimum 
-        unit structure of an e2e network slice. 
+	This document consistently uses the term transport slice. From IETF point of view all these terms are equivalent.
+	Note that the Ttansport slice (or "Other Slice") is the minimum unit structure of an e2e network slice. 
 	Use of service level objectives help to clearly describe different network resources and corresponding parameters neccessary to describe a service.
       </t>    
       <t>
