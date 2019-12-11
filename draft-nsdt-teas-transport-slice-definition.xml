@@ -267,12 +267,7 @@ Legend:
 	This document consistently uses the term transport slice. Note that the Ttansport slice (or "Other Slice") is the minimum 
         unit structure of an e2e network slice. 
 	Use of service level objectives help to clearly describe different network resources and corresponding parameters neccessary to describe a service.
-      </t>
-	      
-      <t>
-          +++++TBD+++ place holder for transport slices (or other slices) as hierarchical concept. +++++
-      </t>
-	      
+      </t>    
       <t>
         A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer as shown in  <xref target="fig_Transport-NS"/>. The endpoints maybe any physical or virtual network functions (PNF/VNF) or any network service for that matter. Simillarly connections maybe virtual or physicals links of any type of technology.  
       </t>
@@ -327,6 +322,9 @@ Legend
         </section>
       <section title="Transport Slice Characteristics">
            <t> TODO </t>
+	   <t>
+          +++++TBD+++ place holder for transport slices (or other slices) as hierarchical concept. +++++
+           </t>
         <section title="Service Level Objectives">
            <t> TODO </t>
         </section>
