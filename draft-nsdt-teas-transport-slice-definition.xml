@@ -152,7 +152,7 @@
       A network slice is composed of different endpoints and application specific connectivity between them. Transport slices are componenets of a network slice, which are created and managed with in the scope of transport networks (IP, MPLS, GMPLS). 
       </t>
       <t>
-      Since there is no concrete definition for transport slices or method to realize them, this document provides a definition of 'transport slice' in IETF, and describes considerations for their realization.
+      Since there is no concrete definition for transport slices and method to realize them, this document provides a definition of 'transport slice' in IETF, and describes considerations for their realization.
       </t>
     </section>
 
