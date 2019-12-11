@@ -149,10 +149,10 @@
           <t>Network infrastructure sharing among the operators</t><t>NFV connectivity (Data Center Interconnect)</t>
         </list>
       <!-- KM: I am confused here. Do you want to say this for network transport slice or network slice in general?-->
-      A network slice is composed of different endpoints and application specific connectivity between them. Transport network slices are a type of network slices that are created and managed with in the scope of transport networks (IP, MPLS, GMPLS). There is no concrete definition for network transport slices established or method to realize them.
+      A network slice is composed of different endpoints and application specific connectivity between them. Transport slices are componenets of a network slice, which are created and managed with in the scope of transport networks (IP, MPLS, GMPLS). 
       </t>
       <t>
-      This document provides a definition of 'transport slice' in IETF, and describes considerations for realization of transport slices. In this document the term transport slice is used as short form for transport network slice.
+      Since there is no concrete definition for transport slices or method to realize them, this document provides a definition of 'transport slice' in IETF, and describes considerations for their realization.
       </t>
     </section>
 
