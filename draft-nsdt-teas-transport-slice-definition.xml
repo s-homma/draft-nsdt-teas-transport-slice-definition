@@ -288,7 +288,7 @@ Legend
       Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it should create 
       one or more of the following two types of artefacts:
       <list style="symbols">
-        <t>Transport slice (or transport sub-slices)</t>
+        <t>Transport slice</t>
         <t>Other slice (application logic or other non-IETF slice components)</t>
         </list>
 	  </t>
