@@ -265,8 +265,10 @@ Legend:
       <t>
         Note that the Transport Slice is also called Transport Sub-Slice or Transport Slice-Subnet in different standard bodies.
 	This document consistently uses the term transport slice. From IETF point of view all these terms are equivalent.
-	Note that the Ttansport slice (or "Other Slice") is the minimum unit structure of an e2e network slice. 
-	Use of service level objectives help to clearly describe different network resources and corresponding parameters neccessary to describe a service.
+       </t>
+       <t>
+	Note that the Transport slice (or "Other Slice") is the minimum unit structure of an e2e network slice. 
+	Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters neccessary to discribe the connectivity and to realize the transport slice.
       </t>    
       <t>
         A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer as shown in  <xref target="fig_Transport-NS"/>. The endpoints maybe any physical or virtual network functions (PNF/VNF) or any network service for that matter. Simillarly connections maybe virtual or physicals links of any type of technology.  
