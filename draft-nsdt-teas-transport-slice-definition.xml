@@ -160,7 +160,7 @@
      <t>Service Level Objective (SLO): </t>
      <t>
        NS ID: Network Slice ID, which in 3GPP standard called S-NSSAI (Single-Network Slice Selection Assistance Information), is
-       uniquely identifies an E2E network slice (See <xref target="fig_Transport-NS"/>)
+       uniquely identifies an E2E network slice. NS ID and S-NSSAI are simply the same.(See <xref target="fig_Transport-NS"/>)
      </t>
      <t>
        mIOT: Massive IOT (5G)
