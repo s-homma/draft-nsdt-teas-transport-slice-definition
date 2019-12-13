@@ -36,6 +36,7 @@
 <!ENTITY I-D.draft-ietf-spring-segment-routing-mpls SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-spring-segment-routing-mpls-11.xml">
 <!ENTITY I-D.draft-ietf-6man-segment-routing-header SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-6man-segment-routing-header-08.xml">
 -->
+<!ENTITY I-D.draft-contreras-teas-slice-nbi SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-contreras-teas-slice-nbi-00.xml">
 
 ]> 
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?> 
@@ -118,6 +119,26 @@
         <email>kiranm@futurewei.com</email>
       </address>
     </author>
+
+    <author fullname="Luis M. Contreras"
+            initials="LM."
+            surname="Contreras">
+      <organization abbrev="Telefonica">
+        Telefonica
+      </organization>
+      <address>
+        <postal>
+          <street></street>
+          <street></street>
+          <city></city>
+          <code></code>
+          <country>Spain</country>
+        </postal>
+        <email>luismiguel.contrerasmurillo@telefonica.com</email>
+        <uri>http://lmcontreras.com/</uri>
+      </address>
+    </author>
+
 
     <date/>
 
@@ -255,7 +276,7 @@ Legend:
 
 
     <section title="IETF Definition and Scope of Transport slice">
-      <section title="Defintion">
+      <section title="Defintion of Transport Slice">
       <t>
     The IETF definition of a transport slice is as follows:
       </t>
@@ -266,13 +287,36 @@ Legend:
         Note that the Transport Slice is also called Transport Sub-Slice or Transport Slice-Subnet in different standard bodies.
 	This document consistently uses the term transport slice. From IETF point of view all these terms are equivalent.
        </t>
-       <t>
-	Note that the Transport slice (or "Other Slice") is the minimum unit structure of an e2e network slice. 
-	Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters neccessary to discribe the connectivity and to realize the transport slice.
-      </t>    
+       
+    <!-- SH: I think a definition about minimum unit of slice is needed before this text. Also I assume it may vary depending on view points such as implementation, management, or tenant aspects.
       <t>
-        A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer as shown in  <xref target="fig_Transport-NS"/>. The endpoints maybe any physical or virtual network functions (PNF/VNF) or any network service for that matter. Simillarly connections maybe virtual or physicals links of any type of technology.  
+	Note that the Transport slice (or "Other Slice") is the minimum unit structure of an e2e network slice. 
       </t>
+    -->
+ 
+      <t>
+	Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters neccessary to 
+    discribe the connectivity and to realize the transport slice.
+      </t>    
+       <t>
+        A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer 
+        as shown in  <xref target="fig_Transport-NS"/>. The endpoints may be user equipment, any physical or virtual network functions (PNF/VNF), or any network service for that matter. 
+        Similarly connections may be virtual or physical links of any type of technology.  
+      </t>
+    
+
+      <t>
+       Transport slice should be technology-agnostic, and the means for implementation is selectable depending on the purposes or required characteristics.  Characteristics on transport slice 
+       is described in <xref target="TS-Char"/>. NBI exposed to higher operation system or slice tenants should be general and not be tied to particular technologies.
+      </t>
+
+    <!-- SH: I'd like to introduce hierarchical concept in definition description. --> 
+      <t>
+       Network slice can have hierarchical structure, and an E2E slice is usually composed of several types of slices. A transport slice may be also realized by combining 
+       several smaller transport slices. The investigation about pros/cons on hierarchical concept of tranport slice is described in <xref target="Hierarchical-Concept"/>.
+      </t>
+    
+
 	
       <figure anchor="fig_Transport-NS" title="Transport slice">
         <artwork align="center"><![CDATA[
@@ -302,42 +346,112 @@ Legend
       <t>
      As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
      and one or more of other slices of any combinations. One of the critical parts of an E2E network slice is 
-     "Transport Slices" which provides various connections with certain SLA between various endpoints. 
+     "Transport Slices" which provides various connections with certain SLO between various endpoints. 
       </t>
       <t>
-     Defining the other slices is out-of-scope of current work.
+     Noted that defining the other slices is out-of-scope of current work.
       </t>
       <t><xref target="fig_Transport-NS"/> illustrates the definition of a Transport Slice where a single transport 
       slice provides connectivity between "m" endpoints on left-hand side to "n" endpoints on right-hand side with specific 
-      characteristic for Service Level Agreement (SLA). 
+      characteristic for Service Level Objectives (SLO). 
       </t>
+
+    <!-- SH: I'm not sure whether these point (definition and realization) should be mentioned in characteristics context. 
+             Characteristics would be low latency, high-bandwidth, low jitter, high-reliable, etc.
+             And I think it seems redundant to describe "definition" in Definition section.
+
       <t>
       Each transport slice has the following main characteristics:
-		  <list style="symbols">
+          <list style="symbols">
 			  <t>Transport slice definition: It addresses a set of technology-agnostic connections between 
-				  various endpoints with certain SLA </t>
+				  various endpoints with certain SLO </t>
 			  <t> Transport slice realization: In addition to its definition, a Transport Slice has a realization in 
 				  the operator's network. Unlike transport slice definition, which is technology agnostics, its realization 
 				  is technology specific.  </t>
 		  </list>
       </t>
+      -->
         </section>
-      <section title="Transport Slice Characteristics">
-           <t> TODO </t>
-	   <t>
+
+      <section anchor="TS-Char" title="Transport Slice Characteristics">
+        <section title="Characteristics as Network">
+           <t> 
+           A transport slice needs to have several characteristics depending on specified SLO. Non-exhostive list of characteristics 
+           types for transport slice is described below:
+            <list style="symbols">
+             <t>Guaranteed Bandwidth</t>
+             <t>Guaranteed Delay</t>
+             <t>Prevention of Jitter occation</t>
+             <t>Specic Reliability</t>
+             <t>VPN</t>
+             <t>etc.</t>
+            </list>
+           </t>
+           
+           <t>
+           Several SDOs has definition of attributes on network services and some of them have potencially impact on transport slice 
+           characteristics. Analysis of attributes for slices is proceeded in <xref target="I-D.contreras-teas-slice-nbi"/>.  
+           </t>
+	    
+           <t>
              TBD- Place holder for transport slices (or other slices) as hierarchical concept. 
            </t>
+        </section>
         <section title="Service Level Objectives">
            <t> TODO </t>
         </section>
         <section title="Endpoints"> 
            <t> TODO </t>
-        </section>
-		<section title="wSlice Isolation">
+
+        <!-- SH: Attached Luis's memo about terms on NF/SF.            
+        Terms as defined in draft-ietf-teas-sf-aware-topo-model-04:
+
+        - Network Function (NF): A functional block within a network infrastructure that has well-defined external interfaces and 
+        well-defined functional behaviour [ETSI-NFV-TERM].  Such functions include message router, CDN, session border controller, WAN acceleration, 
+        DPI, firewall, NAT, QoE monitor, PE router, BRAS, and radio/fixed access network nodes.
+
+        - Service Function (SF): A function that is responsible for specific treatment of received packets.  A service function can act at various 
+        layers of a protocol stack (e.g., at the network layer or other OSI layers).  As a logical component, a service function can be realized as a 
+        virtual element or be embedded in a physical network element.  One or more service functions can be embedded in the same network element.  
+        Multiple occurrences of the service function can exist in the same administrative domain.  A non-exhaustive list of service functions includes: 
+        firewalls, WAN and application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 [RFC3022], NAT64 [RFC6146], HTTP header 
+        enrichment functions, and TCP optimizers.  The generic term "L4-L7 services" is often used to describe many service functions [RFC7498].
+        
+        Elaborating on top of them, I think we could define for NSDT work the following:
+
+        - Transport Function, as function which is used for transporting or forwarding the user data payload without any processing or modification of it.
+
+        - Service Function, as a function that manipulates, process or modify somehow the user data payload. 
+
+        - Network Function, as a generic term including both Service Function (SF) and Transport Function (TF). The definition in draft-ietf-teas-sf-aware-topo-model could be re-used.
+
+        Then, for transport slicing the objective would be to provide connectivity among service functions, as presented today in Jari's slides. 
+        In some cases the connectivity among SFs could require the traversing of some TFs, while in other cases not, being transparent for the transport slice consumer 
+        and decided by the transport slice producer. 
+        -->
+
+       </section>
+ 
+		<section title="Slice Isolation">
            <t> TODO </t>
+
+        <!-- SH: Attached a memo about isolation consideration 
+        The most important role of "transport slice" is providing "connectivity" between/among endpoints (i.e., network functions or edge nodes of domains) "with fulfilling specific SLA", 
+        and "isolation" is one of key factors for maintaining the SLA.
+
+        SLO is decided between slice provider and tenant, and the appropriate isolation level would be selected on the basis of the SLO. In other words,  "isolation level" should be described 
+        together with what kind of SLA is required. 
+        -->
+
+        </section>
+        
+        <section anchor="Hierarchical-Concept" title="Hierarchical Concept on Transport Slice">
+        <t>
+        TBD
+        </t>
         </section>
       </section>
-      </section>
+
 
       <section title="Transport Slice Examples">
       <section title="Scenario-1">
@@ -450,6 +564,7 @@ Legends
         </figure>
       </section>
     </section>
+    </section>
     
     <section title="Realization of Transport slice">
       <t>
@@ -485,6 +600,7 @@ Step 3:
 
   ]]></artwork>
       </figure>
+
       <section title="Realization of Scenario-1">
         <t><xref target="fig_Imple-5G-Transport-NS"/> depicts the realization of the transport slice 20 of <xref target="fig_5G-Transport-NS"/>. Operator's transport slice controller invoke an abstract API to create a transport slice between 5G endpoints gNB1 and gNB2 to 5G Core endpoints UPF1, UPF2 and UPF3 with SLA inlcuding 10 [ms] latency. 
         </t>
@@ -533,6 +649,7 @@ Legends
   ]]></artwork>
         </figure>
       </section>
+
       <section title="Realization of Scenario-2">
         <t><xref target="fig_Imple-Transport-NS"/> depicts the realization of transport 
       slice 30 of <xref target="fig_FW-Transport-NS"/>. Operator's Transport Slice Controller receives a request to create a 
@@ -582,6 +699,7 @@ Legends
   ]]></artwork>
         </figure>
       </section>
+
       <section title="Realization of Scenario-3">
         <t><xref target="fig_Imple-SFC-Transport-NS-1"/> depicts the realization of the transport slice 40 of 
       <xref target="fig_SFC-Transport-NS-1"/> where a transport slice needed between network functions R1 and R2 across SF1 
@@ -672,6 +790,9 @@ Legend
   ]]></artwork>
         </figure>
       </section>
+    
+
+
     </section>
 
   </middle>
@@ -680,6 +801,7 @@ Legend
 
   <back>
     <references title="Informative References">
+    &I-D.draft-contreras-teas-slice-nbi;
 <!--
       <?rfc include="reference.RFC.7665"?>
       
