@@ -173,24 +173,51 @@
       A network slice is composed of different endpoints and application specific connectivity between them. Transport slices are componenets of a network slice, which are created and managed with in the scope of transport networks (IP, MPLS, GMPLS). 
       </t>
       <t>
-      Since there is no concrete definition for transport slices and method to realize them, this document provides a definition of 'transport slice' in IETF, and describes considerations for their realization.
+      This document provides a definition of 'transport slice' in IETF, and describes considerations for their realization.
       </t>
     </section>
 
     <section title="Terms and Abbreviations">
-     <t>Service Level Objective (SLO): </t>
+     <t>Terms and abbreviations used in this document are listed below.
+       <list style="symbols">
+         <t>E2E network slice: End to End network slice</t>
+         <t>TS ID: Transport Slice Identifier</t>
+         <t>NBI: North Bound Interface</t>
+         <t>SBI: South Bound Interface</t>
+         <t>NF: Network Function</t>
+         <t>SF: Service Function</t>
+         <t>DPI: Deep Packet Inspection</t>
+         <t>WAF: Web Application Firewall</t>
+         <t>SLO: Service Level Objective</t>
+         <t>SLA: Service Level Agreement</t>
+      </list>
+     </t>
+     
+     <!-- SH: 3GPP TS23.501 describes 
+     " NSI ID: an identifier for identifying the Core Network part of a Network Slice instance when multiple Network Slice instances of 
+     the same Network Slice are deployed, and there is a need to differentiate between them in the 5GC."
+     On the other hand, S-NSSAI is an attribute tyep of control plane signaling from UE to 5G Network. They are similar but different.
+
+
      <t>
        NS ID: Network Slice ID, which in 3GPP standard called S-NSSAI (Single-Network Slice Selection Assistance Information), is
        uniquely identifies an E2E network slice. NS ID and S-NSSAI are simply the same.(See <xref target="fig_E2E-NS"/>)
      </t>
+
+     -->
      <t>
-       mIOT: Massive IOT (5G)
+       This document uses 3GPP 5G temrs and some of them are listed below. The details are described in <xref target="TS.23.501-3GPP"/>
+       <list style="symbols">
+        <t>UPF: User Plane Function</t>
+        <t>gNB: Next Generation Node B</t>
+        <t>mMTC: Massive Machine Type Communication</t>
+        <t>URLLC: Ultra reliable and low latency communications</t>
+        <t>eMBB: enhanced Mobile Broadband</t>
+        </list>
      </t>
+
      <t>
-      URLLC: Ultra reliable and low latency communications (5G)	     
-     </t>
-     <t>
-       eMBB: enhanced Mobile Broadband (5G)	     
+     # Authors' note: need more elaboration.
      </t>
 
     </section>
@@ -233,8 +260,8 @@
        |    .--.             .--.                .--.         |
        |   (    )--.        (    )--.           (    )--.     |
        |   .'         '     .'         '        .'        '   |
-[EU-x] |  (  Network-1  )  (  Network-2  ) ... (  Network-p ) |[EU-y]
-       |  `-----------'    `-----------'       `----------'   |
+[EP-x] |  (  Network-1  )  (  Network-2  ) ... (  Network-p ) |[EP-y]
+       |   `-----------'    `-----------'       `----------'  |
        |                                                      |
        |                      Operator-z                      |
        |------------------------------------------------------|
@@ -242,22 +269,41 @@ Legend:
   E2E NS: End-to-end network slice
   TSn: Transport Slice n
   OSm: Other Slice m
-  EU-x: End User-x
-  EU-y: End User-y
+  EP-x: Endpoint-x
+  EP-y: Endpoint-y
     
   ]]></artwork>
       </figure>
-      <t>
 
+
+      <t>
+      Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it should create 
+      one or more of the following two types of artefacts:
+      <list style="symbols">
+        <t>Transport slice</t>
+        <t>Other slice (application logic or other non-IETF slice components)</t>
+        </list>
+	  </t>
+      
+      <t>
+       Noted that defining the other slices is out-of-scope of current work.
+      </t>
+
+      <t>
     To further clarify the concept of the E2E network slice, consider the network operator-z has various 
     customers. One of the customers, needs a separate and an independent E2E logical network 
-    for a service (e.g. CCTV, autonomous driving, HD map etc.) and has a specific network SLA requirement (e.g. a secure connection with an E2E latency less than 5ms) from End User-x (EU-x) to End User-y (EU-y) to the other side. This E2E logical network is called an "E2E network slice".  A typical example of EU-x in 5G is the User equipment such as infotainment unit in the car, CCTV, Car for autonomous driving etc. and a typical example of EU-y in 5G is 5G application server, IMS etc.
+    for a service (e.g. CCTV, autonomous driving, HD map etc.) and has a specific network SLO requirement 
+    (e.g. a secure connection with an E2E latency less than 5ms) from Endpoint-x (EP-x) to Endpoint-y (EP-y) to 
+    the other side. This E2E logical network is called an "E2E network slice".  A typical example of EP-x in 5G 
+    is the User equipment such as infotainment unit in the car, CCTV, Car for autonomous driving etc. and a 
+    typical example of EP-y in 5G is 5G application server, IMS etc.
       </t>
       <t>
     In <xref target="fig_E2E-NS"/> we use the term "E2E network slice" to show the logical 
-    network with requested SLA from EU-x to EU-y. It is important to consider that an "E2E network slice" is 
+    network with requested SLO for EP-x to EP-y. It is important to consider that an "E2E network slice" is 
     associated with a customer and a service type (e.g. CCTV service, autonomous driving etc.).
       </t>
+
       <t>
         <!--KM: I think entire city is too large, you can say an area or zone -->
     For example, a customer "City of NY" would like to connect all its CCTV cameras for the entire city to one or more locations for viewing or collection. To this end, it requests local carrier - 'operator-z' in NY to create a new E2E network slice with a bandwidth no-less-than 10Mbps from each CCTV coverage area. In this case, a single E2E network slice will be created by the operator-z for customer "City of NY", service type of CCTV and requested bandwidth connecting all the CCTV camera zones to one or more control-centers for the collection of video data.
@@ -285,7 +331,7 @@ Legend:
       </t>
       <t>
         Note that the Transport Slice is also called Transport Sub-Slice or Transport Slice-Subnet in different standard bodies.
-	This document consistently uses the term transport slice. From IETF point of view all these terms are equivalent.
+	    This document consistently uses the term transport slice. From IETF point of view all these terms are equivalent.
        </t>
        
     <!-- SH: I think a definition about minimum unit of slice is needed before this text. Also I assume it may vary depending on view points such as implementation, management, or tenant aspects.
@@ -295,66 +341,83 @@ Legend:
     -->
  
       <t>
-	Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters neccessary to 
-    discribe the connectivity and to realize the transport slice.
-      </t>    
+	   Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters neccessary to 
+       discribe the connectivity and to realize the transport slice.
+      </t>
+
+       <t>
+        Transport slice should be technology-agnostic, and the means for implementation is selectable depending on the purposes or required characteristics.  
+        Characteristics on transport slice is described in <xref target="TS-Char"/>. NBI exposed to higher operation systems or network slice tenants should be general 
+        and not be tied to particular technologies.
+       </t>
+      </section>
+
+      <section title="Overview of Transport Slice Structure">    
        <t>
         A transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer 
-        as shown in  <xref target="fig_Transport-NS"/>. The endpoints may be user equipment, any physical or virtual network functions (PNF/VNF), or any network service for that matter. 
-        Similarly connections may be virtual or physical links of any type of technology.  
-      </t>
-    
+        as shown in  <xref target="fig_Transport-NS"/>. The endpoints may be user equipment, any physical or virtual network functions (PNF/VNF), 
+        or any network service for that matter. Similarly connections may be virtual or physical links of any type of technology.  
+       </t>
 
-      <t>
-       Transport slice should be technology-agnostic, and the means for implementation is selectable depending on the purposes or required characteristics.  Characteristics on transport slice 
-       is described in <xref target="TS-Char"/>. NBI exposed to higher operation system or slice tenants should be general and not be tied to particular technologies.
-      </t>
+<!-- SH: I attatched new fiture for presenting transport slice as below. 
+         If this is better than old one, I can change other figures.
+-->
 
-    <!-- SH: I'd like to introduce hierarchical concept in definition description. --> 
-      <t>
-       Network slice can have hierarchical structure, and an E2E slice is usually composed of several types of slices. A transport slice may be also realized by combining 
-       several smaller transport slices. The investigation about pros/cons on hierarchical concept of tranport slice is described in <xref target="Hierarchical-Concept"/>.
-      </t>
-    
-
-	
       <figure anchor="fig_Transport-NS" title="Transport slice">
         <artwork align="center"><![CDATA[
   
-      <-------  Transport slice -------->
 
-          .--.               .--.        
-[EP11]   (    )- .          (    )- .    [EP21]
-        .'         '       .'         '  
-[EP12] (  Network-1 ) ... (  Network-p ) [EP22]   
- :     `-----------'      `-----------'    :
-[EP1m]                                   [EP2n]
+             ____________________________
+[EP11]------/                           /--[EP21]
+           /                           /
+[EP12]----/     Transport Slice       /----[EP22]
+  :      /(B/W > x bps, Delay < y ms)/
+[EP1m]--/___________________________/------[EP23]
+
+== == == == == == == == == == == == == == == == == ==
+
+           .--.               .--.        
+[EP11]    (    )- .          (    )- .     [EP21]
+         .'         '       .'         '  
+[EP12]  (  Network-1 ) ... (  Network-p )  [EP22]   
+ :       `-----------'      `-----------'     :
+[EP1m]                                     [EP2n]
 
 Legend
-  EP: Endpoint 
+  EP: Endpoint
+  B/W: Bandwidth
 
   ]]></artwork>
-      </figure>
-      <t>
-      Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it should create 
-      one or more of the following two types of artefacts:
-      <list style="symbols">
-        <t>Transport slice</t>
-        <t>Other slice (application logic or other non-IETF slice components)</t>
-        </list>
-	  </t>
+      </figure>    
+
+
+      <t><xref target="fig_Transport-NS"/> illustrates a case where a single transport 
+      slice provides connectivity between "m" endpoints on left-hand side to "n" endpoints on right-hand side with specific 
+      characteristic for SLO (i.e., assuring B/W to be more than x bps and transmission delay to be less than y ms). 
+      </t>
+
       <t>
      As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
      and one or more of other slices of any combinations. One of the critical parts of an E2E network slice is 
      "Transport Slices" which provides various connections with certain SLO between various endpoints. 
       </t>
+
+
+
+    <!-- SH: I'd like to introduce hierarchical concept in definition description. --> 
       <t>
-     Noted that defining the other slices is out-of-scope of current work.
+       Network slice can have hierarchical structure, and an E2E network slice is usually composed of several types of slices. A transport slice may be 
+       also realized by combining several smaller transport slices. The investigation about pros/cons on hierarchical concept of tranport slice is 
+       described in <xref target="Hierarchical-Concept"/>.
       </t>
-      <t><xref target="fig_Transport-NS"/> illustrates the definition of a Transport Slice where a single transport 
-      slice provides connectivity between "m" endpoints on left-hand side to "n" endpoints on right-hand side with specific 
-      characteristic for Service Level Objectives (SLO). 
-      </t>
+     
+    
+
+	
+
+
+
+
 
     <!-- SH: I'm not sure whether these point (definition and realization) should be mentioned in characteristics context. 
              Characteristics would be low latency, high-bandwidth, low jitter, high-reliable, etc.
@@ -372,9 +435,10 @@ Legend
       </t>
       -->
         </section>
+      </section>
 
       <section anchor="TS-Char" title="Transport Slice Characteristics">
-        <section title="Characteristics as Network">
+        <section title="Characteristics as Network/Service">
            <t> 
            A transport slice needs to have several characteristics depending on specified SLO. Non-exhostive list of characteristics 
            types for transport slice is described below:
@@ -382,7 +446,9 @@ Legend
              <t>Guaranteed Bandwidth</t>
              <t>Guaranteed Delay</t>
              <t>Prevention of Jitter occation</t>
-             <t>Specic Reliability</t>
+             <t>High Reliability (i.e., low packet loss rate)</t>
+             <t>High Availability (i.e., MTBF, MTTR)</t>
+             <t>Secure network</t>
              <t>VPN</t>
              <t>etc.</t>
             </list>
@@ -392,15 +458,20 @@ Legend
            Several SDOs has definition of attributes on network services and some of them have potencially impact on transport slice 
            characteristics. Analysis of attributes for slices is proceeded in <xref target="I-D.contreras-teas-slice-nbi"/>.  
            </t>
-	    
+	    <!-- 
            <t>
              TBD- Place holder for transport slices (or other slices) as hierarchical concept. 
            </t>
+        -->
         </section>
-        <section title="Service Level Objectives">
+
+        
+        <section title="Service Level Objectives on Transport Slice">
            <t> TODO </t>
         </section>
-        <section title="Endpoints"> 
+
+
+        <section title="Endpoint Variation"> 
            <t> TODO </t>
 
         <!-- SH: Attached Luis's memo about terms on NF/SF.            
@@ -433,7 +504,17 @@ Legend
        </section>
  
 		<section title="Slice Isolation">
-           <t> TODO </t>
+           <t>
+           The main role of transort slice is providing connectivity among endopints with fulfilling specific SLO. Isolation is a concept for simultaneous 
+           coexistence of multiple network slices sharing the same infrastracture, and it enables to prevent the reduction of communication quality caused 
+           by disturbance from other network slices. 
+           </t>
+
+           <t>
+           There are some levels of enforcement of isolation, such as hard or soft isolation, and the appropriate level should be selected on the basis of 
+           specified SLO. As examples of the realization of isolation, IntServ/DiffServ, TE, or RSVP can be used. Dedicated technologies for isolation and 
+           the strength are listed below (TBD):
+           </t> 
 
         <!-- SH: Attached a memo about isolation consideration 
         The most important role of "transport slice" is providing "connectivity" between/among endpoints (i.e., network functions or edge nodes of domains) "with fulfilling specific SLA", 
@@ -450,9 +531,9 @@ Legend
         TBD
         </t>
         </section>
-      </section>
+    </section>
 
-
+    <section title="Realization of Transport slice">
       <section title="Transport Slice Examples">
       <section title="Scenario-1">
         <t><xref target="fig_5G-Transport-NS"/> depicts an example of transport slice connecting two 5G RAN nodes (gNB) to three 5G Core user plan function nodes (UPF). 
@@ -474,6 +555,7 @@ Legend
   ]]></artwork>
         </figure>
       </section>
+
       <section title="Scenario-2">
         <t><xref target="fig_FW-Transport-NS"/> depicts another example where transport slice 30 is created to 
       connect router ER1 to two firewall endpoints with SLA including 10 [Mbps], or higher, bandwidth.
@@ -564,11 +646,24 @@ Legends
         </figure>
       </section>
     </section>
-    </section>
+
     
-    <section title="Realization of Transport slice">
+    <section title="Considerations on Realization/Implementation">
       <t>
-      In addition to its definition, a Transport Slice has another characteristic which is its realization in the operator's network as shown in <xref target="fig_Implementation_TS"/>. The creaton of a new Transport Slice will be initiated from a northbound interface whereby a higher level system can request connections with specific characteristics (Step 1). This request will be processed by a Transport Slice Controller (Step 2) which specifies a mapping between northbound request to any IETF Services, Tunnels and paths. A series of requests for creaton of services, tunnels and paths will be sent to the network to realize the trasport slice.  
+      A Transport Slice has another aspect which is its realization in the operator's network as shown in <xref target="fig_Implementation_TS"/>. 
+      The creaton of a new Transport Slice will be initiated with follwoing 3 Steps:
+       <list style="hanging">
+        <t hangText="Step 1:">
+        A higher level system requests connections with specific characteristics via NBI. 
+        </t>
+        <t hangText="Step 2:">
+        This request will be processed by a Transport Slice Controller which specifies a mapping between northbound request to any IETF Services, 
+        Tunnels, and paths models. 
+        </t>
+        <t hangText="Step 3:">
+        A series of requests for creaton of services, tunnels and paths will be sent to the network to realize the trasport slice.  
+        </t>
+        </list>
       </t>
       <figure anchor="fig_Implementation_TS" title="Transport Slice Realization">
         <artwork align="center"><![CDATA[
@@ -587,6 +682,12 @@ Legends
                           |
                           V
 
+
+
+  ]]></artwork>
+      </figure>
+
+<!--
 Step 1: 
  The higher level system (e.g. e2e network slice orchestrator) 
  can request a transport slice with specific characteristics
@@ -597,9 +698,7 @@ Step 2:
 
 Step 3: 
  Realize the transport slice by creating Services/Tunnels/Paths 
-
-  ]]></artwork>
-      </figure>
+-->
 
       <section title="Realization of Scenario-1">
         <t><xref target="fig_Imple-5G-Transport-NS"/> depicts the realization of the transport slice 20 of <xref target="fig_5G-Transport-NS"/>. Operator's transport slice controller invoke an abstract API to create a transport slice between 5G endpoints gNB1 and gNB2 to 5G Core endpoints UPF1, UPF2 and UPF3 with SLA inlcuding 10 [ms] latency. 
@@ -794,6 +893,7 @@ Legend
 
 
     </section>
+  </section>
 
   </middle>
 
