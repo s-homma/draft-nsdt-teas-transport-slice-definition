@@ -260,7 +260,7 @@
        |    .--.             .--.                .--.         |
        |   (    )--.        (    )--.           (    )--.     |
        |   .'         '     .'         '        .'        '   |
-[EP-x] |  (  Network-1  )  (  Network-2  ) ... (  Network-p ) |[EP-y]
+[EU-x] |  (  Network-1  )  (  Network-2  ) ... (  Network-p ) |[EU-y]
        |   `-----------'    `-----------'       `----------'  |
        |                                                      |
        |                      Operator-z                      |
@@ -269,8 +269,8 @@ Legend:
   E2E NS: End-to-end network slice
   TSn: Transport Slice n
   OSm: Other Slice m
-  EP-x: Endpoint-x
-  EP-y: Endpoint-y
+  EU-x: End User-x
+  EU-y: End User-y
     
   ]]></artwork>
       </figure>
@@ -293,14 +293,14 @@ Legend:
     To further clarify the concept of the E2E network slice, consider the network operator-z has various 
     customers. One of the customers, needs a separate and an independent E2E logical network 
     for a service (e.g. CCTV, autonomous driving, HD map etc.) and has a specific network SLO requirement 
-    (e.g. a secure connection with an E2E latency less than 5ms) from Endpoint-x (EP-x) to Endpoint-y (EP-y) to 
-    the other side. This E2E logical network is called an "E2E network slice".  A typical example of EP-x in 5G 
+    (e.g. a secure connection with an E2E latency less than 5ms) from End User-x (EU-x) to End User-y (EU-y) to 
+    the other side. This E2E logical network is called an "E2E network slice".  A typical example of EU-x in 5G 
     is the User equipment such as infotainment unit in the car, CCTV, Car for autonomous driving etc. and a 
-    typical example of EP-y in 5G is 5G application server, IMS etc.
+    typical example of EU-y in 5G is 5G application server, IMS etc.
       </t>
       <t>
     In <xref target="fig_E2E-NS"/> we use the term "E2E network slice" to show the logical 
-    network with requested SLO for EP-x to EP-y. It is important to consider that an "E2E network slice" is 
+    network with requested SLO for EU-x to EU-y. It is important to consider that an "E2E network slice" is 
     associated with a customer and a service type (e.g. CCTV service, autonomous driving etc.).
       </t>
 
@@ -334,7 +334,7 @@ Legend:
 	    This document consistently uses the term transport slice. From IETF point of view all these terms are equivalent.
        </t>
        
-    <!-- SH: I think a definition about minimum unit of slice is needed before this text. Also I assume it may vary depending on view points such as implementation, management, or tenant aspects.
+    <!-- SH: I think a definition about minimum unit of slice is needed before this text. Also I assume it may vary depending on view points such as realization, management, or tenant aspects.
       <t>
 	Note that the Transport slice (or "Other Slice") is the minimum unit structure of an e2e network slice. 
       </t>
@@ -346,7 +346,7 @@ Legend:
       </t>
 
        <t>
-        Transport slice should be technology-agnostic, and the means for implementation is selectable depending on the purposes or required characteristics.  
+        Transport slice should be technology-agnostic, and the means for realization is selectable depending on the purposes or required characteristics.  
         Characteristics on transport slice is described in <xref target="TS-Char"/>. NBI exposed to higher operation systems or network slice tenants should be general 
         and not be tied to particular technologies.
        </t>
@@ -445,7 +445,7 @@ Legend
             <list style="symbols">
              <t>Guaranteed Bandwidth</t>
              <t>Guaranteed Delay</t>
-             <t>Prevention of Jitter occation</t>
+             <t>Prevention of Jitter</t>
              <t>High Reliability (i.e., low packet loss rate)</t>
              <t>High Availability (i.e., MTBF, MTTR)</t>
              <t>Secure network</t>
@@ -648,9 +648,9 @@ Legends
     </section>
 
     
-    <section title="Considerations on Realization/Implementation">
+    <section title="Considerations on Realization">
       <t>
-      A Transport Slice has another aspect which is its realization in the operator's network as shown in <xref target="fig_Implementation_TS"/>. 
+      A Transport Slice has another aspect which is its realization in the operator's network as shown in <xref target="fig_Realization_TS"/>. 
       The creaton of a new Transport Slice will be initiated with follwoing 3 Steps:
        <list style="hanging">
         <t hangText="Step 1:">
@@ -665,7 +665,7 @@ Legends
         </t>
         </list>
       </t>
-      <figure anchor="fig_Implementation_TS" title="Transport Slice Realization">
+      <figure anchor="fig_Realization_TS" title="Transport Slice Realization">
         <artwork align="center"><![CDATA[
 
     |------------------------------------------|
