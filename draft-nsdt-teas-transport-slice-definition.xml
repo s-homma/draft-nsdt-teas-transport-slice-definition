@@ -222,9 +222,9 @@
 
     </section>
 
-    <section title="High level architecture of end-to-end network slicing">
+    <section title="High-level Architecture of End-to-End Network Slicing">
       <t>
-        An end-2-end (E2E) network slice is a complete network slice that provides a service in its entireity with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
+        An end-2-end (E2E) network slice is a complete network slice that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
 
     To illustrate the IETF definitions of both E2E network slice and transport slice, consider the network shown in <xref target="fig_E2E-NS"/>, where a network operator has an E2E network slice that traverses multiple technology-specific networks. Each of these networks might use any of a number of technologies, including IP, MPLS, Fiber-Optics (e.g. WDM, DWDM), Passive Optical Networking (PON), Microwave, etc.
       </t>
@@ -235,7 +235,7 @@
         <t>Application servers</t>
         <t>Firewalls</t>
         <t>Radio Access Network (RAN) components</t>
-        <t>Mobile Core componets</t>
+        <t>Mobile Core components</t>
         <t>Microwave transceivers</t>
         <t>Optical repeaters</t>
         <t>etc.</t></list>
@@ -321,8 +321,8 @@ Legend:
     </section>
 
 
-    <section title="IETF Definition and Scope of Transport slice">
-      <section title="Defintion of Transport Slice">
+    <section title="IETF Definition and Scope of Transport Slice">
+      <section title="Definition of Transport Slice">
       <t>
     The IETF definition of a transport slice is as follows:
       </t>
@@ -341,8 +341,8 @@ Legend:
     -->
  
       <t>
-	   Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters neccessary to 
-       discribe the connectivity and to realize the transport slice.
+	   Use of service level objectives (SLO) help to clearly describe different network resources and corresponding parameters necessary to 
+       describe the connectivity and to realize the transport slice.
       </t>
 
        <t>
@@ -407,7 +407,7 @@ Legend
     <!-- SH: I'd like to introduce hierarchical concept in definition description. --> 
       <t>
        Network slice can have hierarchical structure, and an E2E network slice is usually composed of several types of slices. A transport slice may be 
-       also realized by combining several smaller transport slices. The investigation about pros/cons on hierarchical concept of tranport slice is 
+       also realized by combining several smaller transport slices. The investigation about pros/cons on hierarchical concept of transport slice is 
        described in <xref target="Hierarchical-Concept"/>.
       </t>
      
@@ -455,7 +455,7 @@ Legend
            </t>
            
            <t>
-           Several SDOs has definition of attributes on network services and some of them have potencially impact on transport slice 
+           Several SDOs has definition of attributes on network services and some of them have potentially impact on transport slice 
            characteristics. Analysis of attributes for slices is proceeded in <xref target="I-D.contreras-teas-slice-nbi"/>.  
            </t>
 	    <!-- 
@@ -505,8 +505,8 @@ Legend
  
 		<section title="Slice Isolation">
            <t>
-           The main role of transort slice is providing connectivity among endopints with fulfilling specific SLO. Isolation is a concept for simultaneous 
-           coexistence of multiple network slices sharing the same infrastracture, and it enables to prevent the reduction of communication quality caused 
+           The main role of transport slice is providing connectivity among endpoints with fulfilling specific SLO. Isolation is a concept for simultaneous 
+           coexistence of multiple network slices sharing the same physical infrastructure, and it enables to prevent the reduction of communication quality caused 
            by disturbance from other network slices. 
            </t>
 
@@ -533,7 +533,7 @@ Legend
         </section>
     </section>
 
-    <section title="Realization of Transport slice">
+    <section title="Realization of Transport Slice">
       <section title="Transport Slice Examples">
       <section title="Scenario-1">
         <t><xref target="fig_5G-Transport-NS"/> depicts an example of transport slice connecting two 5G RAN nodes (gNB) to three 5G Core user plan function nodes (UPF). 
@@ -590,7 +590,7 @@ Legends
         Transport slice 40 needs lower than 30 ms delay. However, endpoints SF1 and SF2 are implicitly identified during the transport slice realization. In this case, a single transport slice is created between ER1 and ER2.
             </t><t>
         Approach-2 shown in <xref target="fig_SFC-Transport-NS-2"/>  where the transport slice 40 can be broken into transport slices 
-        41, 42, 43. In this case SF1 and SF2 are explicityly identified and as a results three transport slices between following endpoints will be realized:
+        41, 42, 43. In this case SF1 and SF2 are explicitly identified and as a results three transport slices between following endpoints will be realized:
 		<list style="symbols">
 			<t>Between endpoints ER1 and SF1 </t>
 			<t> Between endpoints SF1 and SF2 </t>
@@ -669,7 +669,7 @@ Legends
         <artwork align="center"><![CDATA[
 
     |------------------------------------------|
-    |         A highter level system           |
+    |          A higher level system           |
     |   (e.g e2e network slice orchestrator)   |
     |------------------------------------------|
                           | (Step 1)
