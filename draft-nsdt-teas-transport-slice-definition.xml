@@ -222,6 +222,8 @@
 
     </section>
 
+
+    <!-- SH-23dec: As RFC format, a capital letter is generally used as initial of each word in section titles. -->
     <section title="High level architecture of end-to-end network slicing">
       <t>
         An end-2-end (E2E) network slice is a complete network slice that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
@@ -319,6 +321,7 @@ Legend:
 
 
     <section title="IETF Definition and Scope of Transport slice">
+<!-- SH-23dec: This definition is not for as term but for as transport slice itself, and I'd like return this sub title to original one.-->
       <section title="Defining term Transport Slice">
         <t>
     The basic IETF definition of a transport slice is as follows:
@@ -339,8 +342,10 @@ Legend:
         <t>
 	   SLOs are used to clearly describe different network resources and corresponding parameters necessary to realize the transport slice.
       </t>
+
+    <!-- SH-23dec:  I think what is technology-agnostic is transport slice concept or its structure, not definition. "Technology-agnostic" is "defined" here. -->
         <t>
-        Transport slice definition should be technology-agnostic, and the means for realization are chosen depending on the requirements.  
+        Transport slice <!--definition--> should be technology-agnostic, and the means for realization are chosen depending on the requirements.  
          They expose a north bound interface (NBI) to the network slice operator, which should be general 
         and not  tied to any particular technology. The structure and different characteristics of the transport slice are described in the following  sections. 
         <!--<xref target="TS-Char"/>.-->
@@ -397,6 +402,11 @@ Legend
      "Transport Slices" which provides various connections with certain SLO between various endpoints. 
       </t>
         <!-- SH: I'd like to introduce hierarchical concept in definition description. -->
+
+        <!-- SH-23dec:  Your word "definition" here seems to be different from general definition. I.e., definition generally 
+        defines what something is, and it's strange to use word "definition" in explanation of definitoin. Can you elaborate 
+        what is "definition" here? (In my memory, you explained this in discussion with email but unfortunately I lost the email...)
+        Or,  I think that the main content in this paragraph can be explained without using "definition".  -->
         <t>
 		The structure of a transport slice involves a definition and its realization. The "transport slice definition" 
 		addresses a set of technology-agnostic connections between various endpoints with certain SLO. The 
@@ -404,16 +414,25 @@ Legend
 		 While the definition itself is technology agnostic, its realization 
 		is technology specific. A transport slice definition may be realized by allocating appropriate 
 		resources into one or more networks. </t>
+
+
 		<t>Furthermore, the structure of transport slices can be hierarchical, i.e. operationally, 
 			 something "defined" at one  level maybe decomposed in two transport slices which are then 
 			independently "defined" or "realized". This is further described in <xref target="Hierarchical-Concept"/>.</t>
 
+        <!-- SH-23dec: Explanations about "realizing network operator" and "slice operator" is needed. And I think later sentence can be removed. 
+        (I'm not sure yet whether existing technologies are enough for tranport slice. Also, NBI is not mentioned in this document.)-->
       <t>
 		  Northbound interfaces (NBIs) are exposed by the 'realizing network operator' to the slice operator defining transport slice. While several technologies are already supported for the realization of transport slice, the NBI common description is new and an important part of the transport slice structure. 
       </t>
       </section>
     </section>
     <section anchor="TS-Char" title="Transport Slice Characteristics">
+
+    <!-- SH-23dec: As I mentioned, SLOs are just parameters/indicators representing characteristics of tranport slice as provided network, 
+    and they would be derived from network characteristics depenting on several factors such as service requirements, capability of underlay network,
+    etc. Therefore, clarification of characteristics required to tranport slice would be needed. -->
+
       <section title="Characteristics as Network/Service">
         <t> 
 			The characteristics of transport slice describe the properties and main functionality related to different components of a system that supports transport slices.
@@ -446,12 +465,16 @@ Legend
             </list>
            </t>
 		   <t> 
-			  SLA discussion: The scope IETF Ttransport slice definition and its control is to provide the transport slice realizing 
+			  SLA discussion: The scope IETF transport slice definition and its control is to provide the transport slice realizing 
 			  entity with the parameters that make up the relevant service details.  In contrast 
 			  the concept of a service level agreement represents a contract for a service between a service provider 
-			  and a service consumer (or subscriber), a translation of SLA to SLO  is in not in the scope of IETF. 
+			  and a service consumer (or subscriber), a translation of SLA to SLO  is not in the scope of IETF. 
 			  Transport slices concern with parameteric guarantees of the type defined above. 
 		   </t>
+
+        <!-- SH-23dec: Isolation is a key factor of network slicing, and the treatment in IETF transport slice should be described 
+        as dedicated section, not in just memo.-->
+
 		   <t> 
 			   Isolation discussion: SLO sufficiently specify a transport slice. For example, an SLO 
 			   need not explicitely ask for 
@@ -502,23 +525,33 @@ Legend
  
         
         <section anchor="Hierarchical-Concept" title="Hierarchical Concept on Transport Slice">
+
+        <!-- SH-23dec: What we need clarify here is why tranport slice can have hierarchical structure, and 
+        I assume that the reasons should be elaborated more. 
+        Also, I'm wondering whether this hierarchical concept should be considered indepenent of realization. 
+        Transport slice is a set of resources, not just VPN or TE tunnel, and the realization may be also hierarchical. 
+        (And, if we decide that hierarchy is not used for realization, we need to modify the SFC part in the realization section.)-->
+
         <t>
 		Transport slice definition may follow a hierarchical structure for several reasons, such as ease of independent monitoring, control and management across different administrative domains and to manage scalability better. This characteristic should be used for definition not for realization since realization done with technology awareness. Thus, most basic transport slice definition, that can not be decomposed further will be 1:1 mapped with its realization.
         </t>
+        
+        <!-- SH-23dec: I think the fram around networks is not needed and removed it. -->
+
         <figure anchor="fig_HNS" title="Transport Slice Hierarchy">
           <artwork align="center">
 		<![CDATA[
-          <======================== TS1 ========================>
-          <=====TS11=======>  <==============TS12===============>
-         |                     <====TS121===>   <====TS122======>
-         |    .--.             .--.                .--.         |
-         |   (    )--.        (    )--.           (    )--.     |
-         |   .'         '     .'         '        .'        '   |
-  [EU-x] |  (  Network-1  )  (  Network-2  ) ... (  Network-3 ) |[EU-y]
-         |   `-----------'    `-----------'       `----------'  |
-         |                                                      |
-         |    Operator-y    |        Operator-z                 |
-         |------------------------------------------------------|
+         <======================== TS1 ========================>
+         <=====TS11=======>  <==============TS12===============>
+                             <====TS121====>  <=====TS122======>
+             .--.             .--.                .--.         
+            (    )--.        (    )--.           (    )--.     
+            .'         '     .'         '        .'        '   
+  [EU-x]   (  Network-1  )  (  Network-2  ) ... (  Network-3 )  [EU-y]
+            `-----------'    `-----------'       `----------' 
+         |                                                    |
+         |   Operator-y   |           Operator-z              |
+         
   Legend:
     TSnnn: Level 3 hierarchal transport slice nnn
     TSnn:  Level 2 hierarchal transport slice nn
