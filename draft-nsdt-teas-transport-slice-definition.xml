@@ -529,7 +529,23 @@ Legend
 		</section>
 
         <section title="Connectivity Patterns"> 
-			<t> TODO kiran </t>
+		<t>
+		 Endpoints may be connected point to point or point to multipoint based on the topology requested by the
+			customer.
+		   <list style="symbols">
+			<t hangText="Point to point (P2P):">
+			P2P type of connections are between 2 endpoints like a pseudowire, or a logical link. The interconnections
+				must represent the SLOs as requested by the customer.
+			</t>
+			<t hangText="Multi-point to point (MP2P)">
+				MP2P type connections will interconnect two or more endpoints together, representing an abstract
+				topology or graph. Under MP2P scnearios it shoul be possible for each logical link to have 
+				different SLO than the other link. 
+        
+			</t>
+		</list>
+<!--TODO add more -->
+	    </t>
        </section>
        </section>
  
