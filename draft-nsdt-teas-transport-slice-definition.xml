@@ -410,7 +410,7 @@ Legend
         <t>
 		The structure of a transport slice involves a description and its realization. The "transport slice" 
 		addresses a set of technology-agnostic connections between various endpoints with certain SLO. The managing entity or 
-		operating stakeholder of a transport slice is called a Slice operator. <\t> 
+		operating stakeholder of a transport slice is called a Slice operator. </t> 
 	<t>
 		The "transport slice realization" is use of a specific technology to realize the SLOs in the operator's network. 
 		 While the definition itself is technology agnostic, its realization 
