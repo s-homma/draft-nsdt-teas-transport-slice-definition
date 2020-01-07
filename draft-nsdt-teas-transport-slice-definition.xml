@@ -224,7 +224,7 @@
 
 
     <!-- SH-23dec: As RFC format, a capital letter is generally used as initial of each word in section titles. -->
-    <section title="High level architecture of end-to-end network slicing">
+    <section title="High Level Architecture of End-to-End Network Slicing">
       <t>
         An end-2-end (E2E) network slice is a complete network slice that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
 
@@ -322,7 +322,7 @@ Legend:
 
     <section title="IETF Definition and Scope of Transport slice">
 <!-- SH-23dec: This definition is not for as term but for as transport slice itself, and I'd like return this sub title to original one.-->
-      <section title="Defining term Transport Slice">
+      <section title="Defining Transport Slice">
         <t>
     The basic IETF definition of a transport slice is as follows:
       </t>
@@ -408,17 +408,27 @@ Legend
         what is "definition" here? (In my memory, you explained this in discussion with email but unfortunately I lost the email...)
         Or,  I think that the main content in this paragraph can be explained without using "definition".  -->
         <t>
-		The structure of a transport slice involves a definition and its realization. The "transport slice definition" 
-		addresses a set of technology-agnostic connections between various endpoints with certain SLO. The 
-		"transport slice realization" is use of a specific technology to realize the SLOs in the operator's network. 
+		The structure of a transport slice involves a description and its realization. The "transport slice" 
+		addresses a set of technology-agnostic connections between various endpoints with certain SLO. The managing entity or 
+		operating stakeholder of a transport slice is called a Slice operator. <\t> 
+	<t>
+		The "transport slice realization" is use of a specific technology to realize the SLOs in the operator's network. 
 		 While the definition itself is technology agnostic, its realization 
 		is technology specific. A transport slice definition may be realized by allocating appropriate 
-		resources into one or more networks. </t>
-
-
+		resources into one or more networks. The managing entiry realizing a transport slice are  
+		referred to as realizing network operator in this document (or network operator for short). The network oeprators own 
+		network infrastructure and allocate resources necessary to realize transport slices. </t>
+		
+		<t> The roles of slice operator and network operator, and the scope of operations they may perform 
+			will be one of the core contribution of transport slice framework.  In their respective roles slice operator and network operator are required to perform several operations
+		necessary to administer and manage transport slices and their realization. To be clear, a network operator can 
+		also be a slice oeprator; i.e. it offers resources mapped to realize a transport slice as well as provides transport slice 
+		to customer.
+		</t>
+		
 		<t>Furthermore, the structure of transport slices can be hierarchical, i.e. operationally, 
-			 something "defined" at one  level maybe decomposed in two transport slices which are then 
-			independently "defined" or "realized". This is further described in <xref target="Hierarchical-Concept"/>.</t>
+			 a transport slice at one  level maybe decomposed in two or more transport slices which are then 
+			independently described or "realized". This is further described in <xref target="Hierarchical-Concept"/>.</t>
 
         <!-- SH-23dec: Explanations about "realizing network operator" and "slice operator" is needed. And I think later sentence can be removed. 
         (I'm not sure yet whether existing technologies are enough for tranport slice. Also, NBI is not mentioned in this document.)-->
@@ -533,7 +543,11 @@ Legend
         (And, if we decide that hierarchy is not used for realization, we need to modify the SFC part in the realization section.)-->
 
         <t>
-		Transport slice definition may follow a hierarchical structure for several reasons, such as ease of independent monitoring, control and management across different administrative domains and to manage scalability better. This characteristic should be used for definition not for realization since realization done with technology awareness. Thus, most basic transport slice definition, that can not be decomposed further will be 1:1 mapped with its realization.
+		Transport slice definition may follow a hierarchical structure for several reasons, such as ease of 
+		independent monitoring, control and management across different administrative domains and to manage 
+		scalability better. This characteristic should be used for definition not for realization since 
+		realization done with technology awareness. Thus, most basic transport slice definition, that can not be 
+		decomposed further will be 1:1 mapped with its realization.
         </t>
         
         <!-- SH-23dec: I think the fram around networks is not needed and removed it. -->
