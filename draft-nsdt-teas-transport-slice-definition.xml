@@ -253,8 +253,8 @@
       <figure anchor="fig_E2E-NS" title="E2E network slice">
         <artwork align="center"><![CDATA[
   
-        <======================= E2E NS ===================>
-        <-OS1-> <-TS1-> <-TS2-> <-OS2->  ... <-TSn-> <-OSm->
+        <======================= E2E NS ======================>
+        <-OS1-> <-TS1-> <-TS2-> <-OS2->   ...   <-TSn-> <-OSm->
        |------------------------------------------------------| 
        |    .--.             .--.                .--.         |
        |   (    )--.        (    )--.           (    )--.     |
@@ -322,17 +322,21 @@ Legend:
 
     <section title="IETF Definition and Scope of Transport slice">
 <!-- SH-23dec: This definition is not for as term but for as transport slice itself, and I'd like return this sub title to original one.-->
-      <section title="Defining Transport Slice">
+      <section title="Transport Slice Definition">
+
         <t>
     The basic IETF definition of a transport slice is as follows:
       </t>
         <t>
         "A transport network slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)".
       </t>
+    
+    <!--SH-07Jan: Jie proposed to use sub-slice or sub-network slice for explaining e2e slice. -->
         <t>
         Note: the term transport sub-slice or transport 
 		slice-subnet is used by many standard organizations but from IETF point of view these terms are equivalent.
        </t>
+    
        
     <!-- SH: I think a definition about minimum unit of slice is needed before this text. Also I assume it may vary depending on view points such as realization, management, or tenant aspects.
       <t>
@@ -343,11 +347,13 @@ Legend:
 	   SLOs are used to clearly describe different network resources and corresponding parameters necessary to realize the transport slice.
       </t>
 
-    <!-- SH-23dec:  I think what is technology-agnostic is transport slice concept or its structure, not definition. "Technology-agnostic" is "defined" here. -->
+    <!-- SH-23dec: I think what is technology-agnostic is transport slice concept or its structure, not definition. "Technology-agnostic" is "defined" here. -->
+    <!-- SH-07Jan: I'd like to propose to use word "solution" instead of "definition" here. How about it? -->
         <t>
-        Transport slice <!--definition--> should be technology-agnostic, and the means for realization are chosen depending on the requirements.  
+        Transport slice solution <!--definition--> should be technology-agnostic, and the means for realization can be chosen depending on several factors such as 
+        service requirements or specifications of underlaying infrastructure.  
          They expose a north bound interface (NBI) to the network slice operator, which should be general 
-        and not  tied to any particular technology. The structure and different characteristics of the transport slice are described in the following  sections. 
+        and not  tied to any particular technology. The structure and different characteristics of the transport slice are described in the following sections. 
         <!--<xref target="TS-Char"/>.-->
        </t>
       </section>
@@ -391,15 +397,16 @@ Legend
       </figure>    
 
 
-      <t><xref target="fig_Transport-NS"/> illustrates a case where a single transport 
+      <t>
+      <xref target="fig_Transport-NS"/> illustrates a case where a single transport 
       slice provides connectivity between "m" endpoints on left-hand side to "n" endpoints on right-hand side with specific 
       characteristic for SLO (i.e., assuring B/W to atleast x bps and transmission delay to be less than y ms). 
       </t>
 
       <t>
-     As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
-     and one or more of other slices of any combinations. One of the critical parts of an E2E network slice is 
-     "Transport Slices" which provides various connections with certain SLO between various endpoints. 
+      As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
+      and one or more of other slices of any combinations. One of the critical parts of an E2E network slice is 
+      "Transport Slices" which provides various connections with certain SLO between various endpoints. 
       </t>
         <!-- SH: I'd like to introduce hierarchical concept in definition description. -->
 
@@ -407,6 +414,8 @@ Legend
         defines what something is, and it's strange to use word "definition" in explanation of definitoin. Can you elaborate 
         what is "definition" here? (In my memory, you explained this in discussion with email but unfortunately I lost the email...)
         Or,  I think that the main content in this paragraph can be explained without using "definition".  -->
+
+        <!--
         <t>
 		The structure of a transport slice involves a description and its realization. The "transport slice" 
 		addresses a set of technology-agnostic connections between various endpoints with certain SLO. The managing entity or 
@@ -415,6 +424,7 @@ Legend
 		The "transport slice realization" is use of a specific technology to realize the SLOs in the operator's network. 
 		 While the definition itself is technology agnostic, its realization 
 		is technology specific. A transport slice definition may be realized by allocating appropriate 
+<<<<<<< Updated upstream
 		resources into one or more networks. The managing entiry realizing a transport slice are  
 		referred to as realizing network operator in this document (or network operator for short). The network oeprators own 
 		network infrastructure and allocate resources necessary to realize transport slices. </t>
@@ -426,15 +436,34 @@ Legend
 		to customer.
 		</t>
 		
+=======
+		resources into one or more networks. 
+        </t>
+>>>>>>> Stashed changes
+        -->
+
+        <t>
+        A transport slice is built with combination of specific technologies on the basis of request from a higher operation system. 
+        The interface to higher operation systems should be technology-agnostic, and thge systems and slice customers don't need to 
+        recognize concrete configurations based on the technologies.  The request is represented with some indicator such as SLO, and 
+        technologies are selected and managed according to such requirements.
+        </t>
+
+
+
 		<t>Furthermore, the structure of transport slices can be hierarchical, i.e. operationally, 
 			 a transport slice at one  level maybe decomposed in two or more transport slices which are then 
-			independently described or "realized". This is further described in <xref target="Hierarchical-Concept"/>.</t>
+			independently realized and managed. This is further described in <xref target="Hierarchical-Concept"/>.</t>
 
         <!-- SH-23dec: Explanations about "realizing network operator" and "slice operator" is needed. And I think later sentence can be removed. 
         (I'm not sure yet whether existing technologies are enough for tranport slice. Also, NBI is not mentioned in this document.)-->
-      <t>
-		  Northbound interfaces (NBIs) are exposed by the 'realizing network operator' to the slice operator defining transport slice. While several technologies are already supported for the realization of transport slice, the NBI common description is new and an important part of the transport slice structure. 
-      </t>
+        <!--
+        <t>
+		  Northbound interfaces (NBIs) are exposed by the network operator to the slice operator defining transport slice. 
+          While several technologies are already supported for the realization of transport slice, the NBI common description is new 
+          and an important part of the transport slice structure. 
+        </t>
+        -->
       </section>
     </section>
     <section anchor="TS-Char" title="Transport Slice Characteristics">
@@ -443,26 +472,35 @@ Legend
     and they would be derived from network characteristics depenting on several factors such as service requirements, capability of underlay network,
     etc. Therefore, clarification of characteristics required to tranport slice would be needed. -->
 
-      <section title="Characteristics as Network/Service">
+      <section title="Characteristics as Network/Service and SLO">
         <t> 
-			The characteristics of transport slice describe the properties and main functionality related to different components of a system that supports transport slices.
+			A transport slice may have some characteristics based on service provided on it. Such characteristics can be represented with attributes or 
+            several quantifiable objectives such as SLOs.
 		</t> 
            
            <t>
            Several SDOs has definition of attributes on network services and some of them have potencially impact on transport slice 
            characteristics. Analysis of attributes for slices is proceeded in <xref target="I-D.contreras-teas-slice-nbi"/>.  
            </t>
+
+        <!--
            <t>
              TBD- Place holder for transport slices (or other slices) as hierarchical concept. 
            </t>
+        -->
+        <!--
         </section>
 
         
         <section title="Service Level Objectives on Transport Slice">
         <t> 
-			A transport slice is defined in terms of several quantifiable objectives or SLOs. These objectives define a set of network resource parameters or values necessary to provide a service 
-			a given transport slice. A non-exhaustive 
-		   list of characteristics types for transport slice is described below:
+			A transport slice is defined in terms of several quantifiable objectives or SLOs. These objectives define a set of network resource 
+            parameters or values necessary to provide a service 
+			a given transport slice. 
+        -->
+            <t>
+            SLO is a parameter used widely for deciding objective on network quality, and will be useful for representing characteristics 
+            of transport slice. A non-exhaustive list of characteristics types for transport slice is described below:
             <list style="symbols">
              <t>Guaranteed Bandwidth</t>
              <t>Guaranteed Delay</t>
@@ -509,14 +547,14 @@ Legend
 				There are two types of endpoints based on the functions they perform.
 		   <list style="hanging">
 			<t hangText="Transport type EP:">
-			This type of end point performs forwarding customer payload with out any modification. E.g. routers, switches.
+			This type of end point performs forwarding customer payload without any modification. E.g. routers, switches.
 			</t>
 			<t hangText="Service type EP:">
 				This type of endpoint manipulates, process or modify the user data payload (based on policies). A 
 				non-exhaustive list of service functions includes: firewalls, WAN and application acceleration, 
 				Deep Packet Inspection (DPI), server load balancers, NAT44 [RFC3022], NAT64 [RFC6146], HTTP header 
 				enrichment functions, and TCP optimizers.  The generic term "L4-L7 services" is often used to 
-				describe such service functions.
+				describe such service functions (SFs).
         
 			</t>
 		</list>
@@ -541,7 +579,9 @@ Legend
 				MP2P type connections will interconnect two or more endpoints together, representing an abstract
 				topology or graph. Under MP2P scnearios it shoul be possible for each logical link to have 
 				different SLO than the other link. 
-        
+
+        <!-- SH-07Jan: Do we need to describe MP2MP pattern? -->
+
 			</t>
 		</list>
 <!--TODO add more -->
@@ -559,11 +599,13 @@ Legend
         (And, if we decide that hierarchy is not used for realization, we need to modify the SFC part in the realization section.)-->
 
         <t>
-		Transport slice definition may follow a hierarchical structure for several reasons, such as ease of 
-		independent monitoring, control and management across different administrative domains and to manage 
-		scalability better. This characteristic should be used for definition not for realization since 
-		realization done with technology awareness. Thus, most basic transport slice definition, that can not be 
-		decomposed further will be 1:1 mapped with its realization.
+		Transport slice may follow a hierarchical structure for several reasons, such as ease of independent monitoring, 
+        control and management across different administrative domains and to manage scalability better. 
+
+        <!--
+        This characteristic should be used for definition not for realization since realization done with technology awareness. 
+        Thus, most basic transport slice definition, that can not be decomposed further will be 1:1 mapped with its realization.
+        -->
         </t>
         
         <!-- SH-23dec: I think the fram around networks is not needed and removed it. -->
@@ -579,7 +621,7 @@ Legend
             .'         '     .'         '        .'        '   
   [EU-x]   (  Network-1  )  (  Network-2  ) ... (  Network-3 )  [EU-y]
             `-----------'    `-----------'       `----------' 
-         |                                                    |
+         |                |                                   |
          |   Operator-y   |           Operator-z              |
          
   Legend:
