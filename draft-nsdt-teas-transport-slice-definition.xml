@@ -461,7 +461,7 @@ Legend
  	   	<list style="symbols">
 		 
 		 <t hangText="TSC Northbound Interface (NBI):">
-			 The TSC NBI is a bidirectional interface between 'A higher level system (e.g. E2E network slice orchestrator)' 
+			 The TSC Northbound Interface is a bidirectional interface between 'A higher level system (e.g. E2E network slice orchestrator)' 
 			 and the 'Transport slice controller'(see section X.X for TSC). Using NBI information, The TSC carries 
 			 the mapping to specific technologies for its realization. It is aware of the generalized network resources, 
 			 and links . Additionally, operations to augment and monitor those transport slices are also supported over NBI.
