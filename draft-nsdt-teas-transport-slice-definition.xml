@@ -222,7 +222,7 @@
 
     <section title="High Level Architecture of End-to-End Network Slicing">
       <t>
-        An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
+        An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only within the transport networks.
 
     To illustrate the IETF definitions of both E2E network slice and transport slice, consider the network shown in <xref target="fig_E2E-NS"/>, where a network operator has an E2E network slice that traverses multiple technology-specific networks. Each of these networks might use any number of technologies, including IP, MPLS, Fiber-Optics (e.g. WDM, DWDM), Passive Optical Networking (PON), Microwave, etc.
       </t>
@@ -239,7 +239,7 @@
         <t>etc.</t></list>
       </t>
       <t>
-    Each network may support different technology and an E2E network slice is a combination of these networks. As an example:
+    Each network may support different technologies and an E2E network slice is a combination of these networks. As an example:
       <list style="symbols">
         <t>Network 1 might contain multiple 5G RAN nodes connected to a few Cell Site Gateways (CSG) routers. </t>
         <t>Network 2 might have one or more layer-3 routers and layer-2 switches which may run on top on an optical network.</t>
@@ -285,7 +285,7 @@ Legend:
       </t>
 
       <t>
-    To further clarify the concept of the E2E network slice, consider the network operator-z has various 
+    To further clarify the concept of E2E network slice, consider the network operator-z has various 
     customers. One of the customers, needs a separate and an independent E2E logical network 
     for a service (e.g. CCTV, autonomous driving, HD map, etc.) and has a specific network SLO requirement 
     (e.g. a secure connection with an E2E latency less than 5ms) from End User-x (EU-x) to End User-y (EU-y) to 
@@ -323,13 +323,13 @@ Legend:
     The basic IETF definition of a transport slice is as follows:
       </t>
         <t>
-        "A transport network slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)".
+        "A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)".
       </t>
     
         <t>
-			Note: the term network sub-slice or slice-subnet is used by many standard organizations to compose
-			E2E network slice by piecing smaller slices together. But from IETF point of view these terms are 
-			not used or are equivalent to transport slices.
+		Note: The term sub-slice or slice-subnet is used by many standard organizations 
+		to refer to “transport slice” or “other slices” (i.e. transport sub-slice or transport slice-subnet).
+		From IETF point of view these terms are all equivalent. We will use term "slice" in this document (i.e. use transport slice)
        </t>
     
        
@@ -401,11 +401,12 @@ Legend
 
       <t>
       As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
-      and one or more of other slices of any combinations. One of the critical parts of an E2E network slice is 
-      "Transport Slices" which provides various connections with certain SLO between various endpoints. 
+      and one or more of other slices of any combinations. The "Transport Slices" provides various connections with certain
+      SLO between various endpoints and transport slice realization addresses its implementation using various technologies.
+      In short, the structure of a transport slice involves both definition and its realization.
       </t>
 
-	<t> The structure of a transport slice involves a definition and its realization.  </t> 
+	
 	<t> A "transport slice" addresses a set of technology-agnostic connections between various 
 		endpoints with certain SLOs.  The managing entity or operating stakeholder of a transport slice is 
 		called a Slice operator. </t> 
