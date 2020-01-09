@@ -401,8 +401,8 @@ Legend
 
       <t>
       As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
-      and one or more of "other Slices" of any combinations. The "Transport Slices" provides various connections with certain
-      SLO between various endpoints and transport slice realization addresses its implementation using various technologies.
+      and one or more of "Other Slices" of any combinations. The "Transport Slices" provides various connections with certain
+      SLO between various endpoints whereas the transport slice realization addresses its implementation using various technologies.
       In short, the structure of a transport slice involves both definition and its realization.
       </t>
 
@@ -433,12 +433,14 @@ Legend
 				to define them for consistent terminology.
 	   	<list style="hanging">
 			<t hangText="Customer or User:">
-				A customer is a user of network slice and hence of a user of transport slice also. Customers may request for 
+				A customer is a user of network slice and hence a user of transport slice. Customers may request for 
 				monitoring of associated resources or specific changes to them. </t>
-			<t hangText="Transport Slice Operator and Transport slice Controller:">
-				or a slice operator for short, manages one or more transport slices for one or more customers. Slice 
-				operators maintain runtime state of abstract resources and topologies associated with transport 
-				slices maintained through network slice controllers. </t>
+			<t hangText="Transport Slice Operator:">
+				A transport slice operator (or slice operator for short) manages one or more transport slices for one or more customers. </t>
+			<t hangText="Transport slice Controller:">
+				Using a Transport Slice Controllr (TSC), the slice operator realizes the transport slice in the netowkr
+				using various technologies and also maintains the run-time state of resources and topologies associated with it.
+				The transport slice controller also monitors the transport slice health (see section x.x for more details)</t>
 			<t hangText="Realizing Transport Network Operator and Transport Controller:">
 				These are traditional network infrastructure operators who offer network resources to slice operator 
 				to be associated with a particular transport slice. Transport network operators are existing 
