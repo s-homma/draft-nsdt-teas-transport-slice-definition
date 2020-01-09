@@ -452,22 +452,23 @@ Legend
 		</section>
 	 <section anchor="interfaces" title="Interfaces">
 		 <t> The above stakeholders help to clearly define the scope and type of interfaces necessary to deploy, 
-			 monitor and manage transport slices. The interface between a slice controller and network controller(s) 
-			 has to be technology-agnostic, 
-			 in order to generalize deployment of different types of services. Whereas the interface from a network 
+			 monitor and manage transport slices. The interface between a transport slice controller and network controller(s) 
+			 has to be technology-agnostic, in order to generalize deployment of different types of network slice services. 
+			 Whereas the interface from a network 
 			 controller to the infrastructure may be diverse to support a variety of underlying transport technologies. 
 			 Thus, scope of two types of interfaces are defined as follows:
 
  	   	<list style="symbols">
 		 
-		 <t hangText=" Northbound Interface (NBI):">
-			 Northbound interface is a bidirectional interface between 'Transport network controllers' and 'Transport slice 
-			 controllers'. As mentioned earlier, it carries generalized network resource, link and connectivity information. 
-			 Additionally, operations to augment and monitor those slices are also supported over NBI.
+		 <t hangText="TSC Northbound Interface (NBI):">
+			 The TSC NBI is a bidirectional interface between 'A higher level system (e.g. E2E network slice orchestrator)' 
+			 and the 'Transport slice controller'(see section X.X for TSC). Using NBI information, The TSC carries 
+			 the mapping to specific technologies for its realization. It is aware of the generalized network resources, 
+			 and links . Additionally, operations to augment and monitor those transport slices are also supported over NBI.
 		 </t>
-		 <t hangText=" Southbound Interface (SBI):">
-			 Southbound interface is a bidirectional interface between 'Transport network controllers' and the underlying
-			 infrastructure. These interfaces are technology specific and can utilize many of the existing data models 
+		 <t hangText="TSC Southbound Interface (SBI):">
+			 The TSC Southbound interface is a bidirectional interface between 'Transport slice controller' and network controller(s).
+			 These interfaces are technology-specific and can utilize many of the existing data models 
 			 such as L2SM, L3SM, VPN etc [add ref]. They may need extensions to provide additional operations to 
 			 match NBI operations.
 		 </t>
@@ -476,10 +477,29 @@ Legend
         <figure anchor="fig_interfaces" title="Transport Slice Interfaces">
           <artwork align="center">
 		<![CDATA[
-	Customer <--NBI--> Slice <-- NBI--> Transport <--SBI--> Network
-	                   Controller       controller 
-	   |-- 1:1 ----| |----- common slice -----| |--- Existing---|
-	   |--mapping--| |------ mgmt.,   ops-----| |---  models ---|
+        |------------------------------------------|
+        |                Customer                  |
+        |------------------------------------------|
+                             A
+                             |
+                             V
+        |------------------------------------------|
+        |         A highter level system           |
+        |   (e.g e2e network slice orchestrator)   |
+        |------------------------------------------|
+                             A
+                             | TSC NBI
+                             V
+        |------------------------------------------|
+        |         Transport Slice Controller       |
+        |------------------------------------------|
+                             A
+                             | TSC SBI
+                             V
+        |------------------------------------------|
+        |           Network Controller(s)          |
+        |------------------------------------------|
+
     ]]></artwork>
         </figure>
 		<xref target="fig_interfaces"/> defines the SBI and NBI in the context of transport slices and their
