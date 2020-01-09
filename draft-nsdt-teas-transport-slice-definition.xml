@@ -170,18 +170,19 @@
           <t>Network infrastructure sharing among the operators</t><t>NFV connectivity (Data Center Interconnect)</t>
         </list>
      
-      A 'network slice' is composed of different endpoints, application logic and specific connectivity between them. Transport slices are a part of network slice that fulfills connection requirements, which are created and managed within the scope of transport networks (IP, MPLS, GMPLS). 
+      A 'network slice' is composed of different endpoints, application logic and specific connectivity between them. 
+      Transport slices are a part of network slice that fulfills connection requirements, which are created and managed within the scope of transport networks (e.g. IP, MPLS, GMPLS). 
       </t>
       <t>
-      This document provides a definition of 'transport slice' in IETF, and describes considerations for their realization.
+      This document provides a definition of 'transport slices' in IETF, and describes considerations for their realization.
       </t>
     </section>
 
     <section title="Terms and Abbreviations">
      <t>The terms and abbreviations used in this document are listed below.
        <list style="symbols">
-         <t>E2E network slice: End to End network slice</t>
-         <t>TS ID: Transport Slice Identifier</t>
+         <t>E2E network slice: End-to-End network slice</t>
+         <t>TSID: Transport Slice Identifier</t>
          <t>NBI: North Bound Interface</t>
          <t>SBI: South Bound Interface</t>
          <t>NF: Network Function</t>
@@ -216,16 +217,12 @@
         </list>
      </t>
 
-     <t>
-     # Authors' note: need more elaboration.
-     </t>
-
     </section>
 
 
     <section title="High Level Architecture of End-to-End Network Slicing">
       <t>
-        An end-2-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
+        An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
 
     To illustrate the IETF definitions of both E2E network slice and transport slice, consider the network shown in <xref target="fig_E2E-NS"/>, where a network operator has an E2E network slice that traverses multiple technology-specific networks. Each of these networks might use any number of technologies, including IP, MPLS, Fiber-Optics (e.g. WDM, DWDM), Passive Optical Networking (PON), Microwave, etc.
       </t>
@@ -655,7 +652,7 @@ Legend
           <figure anchor="fig_5G-Transport-NS" title="Example of Transport Slice 20 connecting gNBs to 5G Core UPF">
             <artwork align="center"><![CDATA[
   
-      <--- Transport slice(TS ID:20) --->
+      <--- Transport slice(TSID:20) --->
            with SLO of latency, less 
            than 10[msec]
 
@@ -675,7 +672,7 @@ Legend
         <figure anchor="fig_FW-Transport-NS" title="Example of Transport Slice connecting Router to two firewalls">
           <artwork align="center"><![CDATA[
   
-    <--- Transport slice(TS ID:30) --->
+    <--- Transport slice(TSID:30) --->
            with SLO B/W 5Mbps
 
                  .----.         
@@ -714,7 +711,7 @@ Legends
         <figure anchor="fig_SFC-Transport-NS-1" title="Approach-1: Example of Transport Slice connecting Edge Routers ER1 and ER2 with SFC">
           <artwork align="center"><![CDATA[
 
-     <--- Transport slice(TS ID:40) --->
+     <--- Transport slice(TSID:40) --->
            with SLO of latency 30ms
 
           +-----+
@@ -735,7 +732,7 @@ Legends
         <figure anchor="fig_SFC-Transport-NS-2" title="Approach-2: Example of Transport Slice connecting Edge Routers ER1 and ER2 with SFC">
           <artwork align="center"><![CDATA[
 
-    <-- Transport slice (TS ID:40) -->
+    <-- Transport slice (TSID:40) -->
           with SLO latency 30ms
     <- TS41 -> <- TS42 ->  <- TS43 -->
        SLO        SLO         SLO   
