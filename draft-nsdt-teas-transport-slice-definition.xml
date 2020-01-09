@@ -328,7 +328,7 @@ Legend:
     
         <t>
 		Note: The term sub-slice or slice-subnet is used by many standard organizations 
-		to refer to “transport slice” or “other slices” (i.e. transport sub-slice or transport slice-subnet).
+		to refer to transport slice or other slices (i.e. transport sub-slice or transport slice-subnet).
 		From IETF point of view these terms are all equivalent. We will use term "slice" in this document (i.e. use transport slice)
        </t>
     
