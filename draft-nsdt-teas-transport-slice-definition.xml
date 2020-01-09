@@ -183,6 +183,7 @@
        <list style="symbols">
          <t>E2E network slice: End-to-End network slice</t>
          <t>TSID: Transport Slice Identifier</t>
+	 <t>TSC: Transport Slice Controller</t>      
          <t>NBI: North Bound Interface</t>
          <t>SBI: South Bound Interface</t>
          <t>NF: Network Function</t>
@@ -441,11 +442,11 @@ Legend
 				Using a Transport Slice Controllr (TSC), the slice operator realizes the transport slice in the netowkr
 				using various technologies and also maintains the run-time state of resources and topologies associated with it.
 				The transport slice controller also monitors the transport slice health (see section x.x for more details)</t>
-			<t hangText="Realizing Transport Network Operator and Transport Controller:">
-				These are traditional network infrastructure operators who offer network resources to slice operator 
-				to be associated with a particular transport slice. Transport network operators are existing 
-				network controllers that utilize specific technology to realize transport slices 
-				in their networks.</t>
+			<t hangText="Transport Network Operator:">
+				A transport network operator (or network opertor for short) is traditional network infrastructure 
+				operator who offers network resources to slice operator to be used for realization of a particular 
+				transport slice. Network operators utilizes existing network controllers for specific technology to 
+				realize transport slices in its network.</t>
 		</list> </t>
 
 		</section>
