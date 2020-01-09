@@ -328,7 +328,7 @@ Legend:
     
         <t>
 		Note: The term sub-slice or slice-subnet is used by many standard organizations 
-		to refer to transport slice or other slices (i.e. transport sub-slice or transport slice-subnet).
+		to refer to "Transport Slice" or "Other Slice" (i.e. transport sub-slice or transport slice-subnet).
 		From IETF point of view these terms are all equivalent. We will use term "slice" in this document (i.e. use transport slice)
        </t>
     
@@ -401,7 +401,7 @@ Legend
 
       <t>
       As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
-      and one or more of other slices of any combinations. The "Transport Slices" provides various connections with certain
+      and one or more of "other Slices" of any combinations. The "Transport Slices" provides various connections with certain
       SLO between various endpoints and transport slice realization addresses its implementation using various technologies.
       In short, the structure of a transport slice involves both definition and its realization.
       </t>
