@@ -648,6 +648,10 @@ Legend
     </section>
 
     <section title="Realization of Transport slice">
+	    <t>
+		Author's notes: More details on Transport Slice Controller (TSC)    
+	    </t>
+	    
       <section title="Transport Slice Examples">
       <section title="Scenario-1">
         <t><xref target="fig_5G-Transport-NS"/> depicts an example of transport slice connecting two 5G RAN nodes (gNB) to three 5G Core user plan function nodes (UPF). 
