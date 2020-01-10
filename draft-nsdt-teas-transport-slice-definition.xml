@@ -456,6 +456,10 @@ Legend
 			 has to be technology-agnostic, in order to generalize deployment of different types of network slice services. 
 			 Whereas the interface from a network 
 			 controller to the infrastructure may be diverse to support a variety of underlying transport technologies. 
+			 
+			 Authur's Note: The discussion below is not complete/consistent yet in context of NBI needs further discussion and 
+			 review. Also figure may be too detailed for definitions document.Consider removing.
+			 
 			 Thus, scope of two types of interfaces are defined as follows:
 
  	   	<list style="symbols">
