@@ -457,11 +457,15 @@ Legend
 
 		</section>
 	 <section anchor="interfaces" title="Transport Slice Controller Interfaces">
+		 <t> Authur's Note: The discussion below is not complete/consistent yet in context of NBI needs further discussion and 
+		 review. Also figure may be too detailed for definitions document. Consider removing.</t>
+		 
 		 <t> The above stakeholders help to clearly define the scope and type of interfaces necessary to deploy, 
 			 monitor and manage transport slices. The interface between a transport slice controller and network controller(s) 
 			 has to be technology-agnostic, in order to generalize deployment of different types of network slice services. 
 			 Whereas the interface from a network 
-			 controller to the infrastructure may be diverse to support a variety of underlying transport technologies. 
+			 controller to the infrastructure may be diverse to support a variety of underlying transport technologies.
+			 
 			 Thus, scope of two types of interfaces are defined as follows:
 
  	   	<list style="symbols">
