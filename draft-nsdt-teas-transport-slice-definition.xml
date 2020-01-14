@@ -435,17 +435,23 @@ Legend
 	   	<list style="hanging">
 			<t hangText="Customer or User:">
 				A customer is a user of network slice and hence a user of transport slice. Customers may request for 
-				monitoring of associated resources or specific changes to them. </t>
-			<t hangText="Transport Slice Operator:">
-				A transport slice operator (or slice operator for short) manages one or more transport slices for one or more customers. </t>
-			<t hangText="Transport slice Controller:">
-				Using a Transport Slice Controllr (TSC), the slice operator realizes the transport slice in the netowkr
-				using various technologies and also maintains the run-time state of resources and topologies associated with it.
-				The transport slice controller also monitors the transport slice health (see section x.x for more details)</t>
-			<t hangText="Transport Network Operator:">
-				A transport network operator (or network opertor for short) is traditional network infrastructure 
-				operator who offers network resources to slice operator to be used for realization of a particular 
-				transport slice. Network operators utilizes existing network controllers for specific technology to 
+				monitoring of associated resources or specific changes to them. A user may either directly manage its service by
+				interfacing  with the transport slice controller or indirectly through an orchestrator. </t>
+				<t hangText="Orchestrator:">
+					An orchestrator is an entity that aggregates different services, resource and network requirements. It 
+					interfaces on behalf of a user with transport  slice controller and hence a user of transport slice. 
+					Customers may request for monitoring of associated resources or specific changes to them. </t>
+			<t hangText="Transport Slice Controller:">
+				A transport slice operator (or slice operator for short) manages one or more transport slices for one or more customers 
+				using a Transport Slice Controller (TSC). the TSC realizes the transport slice in the network,
+				 maintains and monitors the run-time state of resources and topologies associated with it.
+				A standard interface is needed between different type of The transport slice controller and different types 
+				of orchestrator. 
+			</t>
+			<t hangText="Transport Network Controller:">
+				A transport network controller is traditional network infrastructure 
+				controller that offers network resources to TSC to be used for realization of a particular 
+				transport slice. These are existing network controllers for a specific technology to 
 				realize transport slices in its network.</t>
 		</list> </t>
 
@@ -620,21 +626,23 @@ Legend
        </section>
  
         
-        <section anchor="Hierarchical-Concept" title="Hierarchical Concept on Transport Slice">
-
-        <!-- SH-23dec: What we need clarify here is why tranport slice can have hierarchical structure, and 
-        I assume that the reasons should be elaborated more. 
-        Also, I'm wondering whether this hierarchical concept should be considered indepenent of realization. 
-        Transport slice is a set of resources, not just VPN or TE tunnel, and the realization may be also hierarchical. 
-        (And, if we decide that hierarchy is not used for realization, we need to modify the SFC part in the realization section.)-->
-
+        <section anchor="Hierarchical-Concept" title="Vertical Transport Slice">
         <t>
-			Transport slice may follow a hierarchical structure for several reasons, such as ease of independent 
-			monitoring, performance, control and management across different administrative domains 
-			and to manage scalability better. 
-			This characteristic should be used for definition not for realization since realization is done with 
-			a particular technology.  Thus, the most basic transport slice definition, that can not be decomposed further 
-			will be one to one mapping to its single instance of realized transport slice.
+			Transport slice may follow a hierarchical relation that may provide a vertical structure to it. This is used 
+			for  building multi-layer slices and each layer providing its own independent 
+			monitoring, performance, control and management of resources. 
+			The vertical transport slice characteristic maybe used in 2 forms:
+			<list style="symbols">
+			  <t> The Transport slice itself where it represents hierarchy of abstracted transport slices. In this case realization 
+				  will done just once with a particular technology.  Thus, the lowest transport slice in the hierarchy that 
+				  can not be decomposed further will be one to one mapping to its instance of realized transport slice.</t>
+			 <t> Since a transport slice is a set of resources, not just VPN or 
+				 TE tunnel, the realization of a transport slice may be also hierarchical. This type of multi-layer vertical 
+				 transport slice associates resources at different layers. For example, an IP transport slice
+				 would utilize one or more optical transport slice.  In this case realization 
+				will done for  a particular technology at that layer. Thus, the lowest transport slice in this type of hierarchy that 
+				can not be decomposed further will be an instance of realized physical layer transport slice.</t>
+			</list>				
        
         </t>
         
@@ -665,6 +673,18 @@ Legend
       </t>
 	
       </section>
+      <section title="Horizonal Composition of Transport slice">
+	<t> In contrast, horizontal transport slices enable composition of multiple realized transport slices. Since transport slices 
+		are not necessarily single tunnel and may traverse through differnt data planes, each realized transport slice will require 
+		a stitching or mapping function. These stitching functions can be viewed as a type of intermediate network function endpoints. 
+		For instance in <xref target="fig_HNS"/>, TS11 and TS12 are horizonal transport slices. If we assume that TS11 is an L2 tunnel and TS12 is an SRV6 based path, then a 'Service type EP' (not shown in figure) is needed for translation.
+    </t>
+    <t>
+	Author's notes: This  service type EP is  new type of transport slice specific service function. We may call it transport slice
+	gateway.  
+    </t>
+
+    </section>
     </section>
 
     <section title="Realization of Transport slice">
