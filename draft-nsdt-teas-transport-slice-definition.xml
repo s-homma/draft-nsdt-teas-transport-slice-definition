@@ -166,8 +166,9 @@
       devices. Some key applications which might benefit from the use of network slicing include:
         <list style="symbols">
           <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
-          <t>Wholesale business VPN</t>
-          <t>Network infrastructure sharing among the operators</t><t>NFV connectivity (Data Center Interconnect)</t>
+          <t>Network wholesale</t>
+          <t>Network infrastructure sharing among the operators</t>
+          <t>NFV connectivity (Data Center Interconnect)</t>
         </list>
      
       A 'network slice' is composed of different endpoints, application logic and specific connectivity between them. 
@@ -181,15 +182,15 @@
     <section title="Terms and Abbreviations">
      <t>The terms and abbreviations used in this document are listed below.
        <list style="symbols">
-         <t>E2E network slice: End-to-End network slice</t>
+ <!--        <t>E2E network slice: End-to-End network slice</t>  -->
          <t>TSID: Transport Slice Identifier</t>
 	 <t>TSC: Transport Slice Controller</t>      
          <t>NBI: North Bound Interface</t>
          <t>SBI: South Bound Interface</t>
          <t>NF: Network Function</t>
-         <t>SF: Service Function</t>
+ <!--        <t>SF: Service Function</t> 
          <t>DPI: Deep Packet Inspection</t>
-         <t>WAF: Web Application Firewall</t>
+         <t>WAF: Web Application Firewall</t> -->
          <t>SLO: Service Level Objective</t>
          <t>SLA: Service Level Agreement</t>
       </list>
@@ -207,6 +208,7 @@
      </t>
 
      -->
+     <!-- SH-28Jan: Based on Jari's comment that there are too many definition and confusing, I removed 5G terms which are not related to transport slice directly .
      <t>
        This document uses 3GPP 5G terms and some of them are listed below. The details are described in <xref target="TS.23.501-3GPP"/>
        <list style="symbols">
@@ -217,7 +219,7 @@
         <t>eMBB: enhanced Mobile Broadband</t>
         </list>
      </t>
-
+    -->
     </section>
 
 
