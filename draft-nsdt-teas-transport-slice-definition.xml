@@ -37,8 +37,9 @@
 <!ENTITY I-D.draft-ietf-6man-segment-routing-header SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-6man-segment-routing-header-08.xml">
 -->
 <!ENTITY I-D.draft-contreras-teas-slice-nbi SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-contreras-teas-slice-nbi-00.xml">
-
-]> 
+<!ENTITY I-D.draft-homma-rtgwg-slice-gateway SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-homma-rtgwg-slice-gateway-01.xml">
+<!ENTITY I-D.draft-ietf-teas-sf-aware-topo-model SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-sf-aware-topo-model-04.xml">
+]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?> 
 <!-- used by XSLT processors --> 
 <!-- For a complete list and description of processing instructions (PIs),  
@@ -150,20 +151,22 @@
 
     <abstract>
       <t>
-      This document describes the definition of transport slice in IETF, and describes considerations for realization
-      of transport slice. This work is part of work on TEAS WG network slicing Design Team.
+      This document describes the definition of slice in transport network and its characteristics. 
+      This work is part of work on TEAS WG network slicing Design Team.
       </t>
     </abstract>
   </front>
 
   <middle>
     <section title="Introduction">
-		<t>
-      Network slicing is a methodology to generically describe the logical partitioning 
-      of network resources  associated with a service or an application. Network Slicing is considered very useful because there is a need to generalize control, operations and management of 
-      diverse set of services and related resource requirements that can then be applied to
-      any number or type of proposed, implemented and/or deployed technologies and associated
-      devices. Some key applications which might benefit from the use of network slicing include:
+	<!-- SH-28Jan:  modified the following text for  emphasizing  benefitial features of network slicing. -->
+    	<t>
+       Network slicing is a methodology to generically describe the logical partitioning of network resources  
+       associated with a service or an application. Network slicing is expected to enables diverse 
+       devices/applications which have different requirements on communication to coexist on the same network 
+       efficiently. Also, a network slice sometimes traverses multiple domains, and generalizing of interafaces, 
+       operations, and managements would be important.  Some key applications which might benefit from the 
+       use of network slicing include:
         <list style="symbols">
           <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
           <t>Network wholesale</t>
@@ -172,10 +175,11 @@
         </list>
      
       A 'network slice' is composed of different endpoints, application logic and specific connectivity between them. 
-      Transport slices are a part of network slice that fulfills connection requirements, which are created and managed within the scope of transport networks (e.g. IP, MPLS, GMPLS). 
+      Transport slices are a part of network slice that fulfills connection requirements between endpoints. Transport slices 
+      are created and managed within the scope of transport networks (e.g. IP, MPLS, GMPLS). 
       </t>
       <t>
-      This document provides a definition of 'transport slices' in IETF, and describes considerations for their realization.
+      This document provides a definition of slice in transport network (called "transport slice"), and describes its characteristics.
       </t>
     </section>
 
@@ -223,7 +227,9 @@
     </section>
 
 
-    <section title="High Level Architecture of End-to-End Network Slicing">
+    <section title="High Level Description of End-to-End Network Slicing">
+
+    <!-- SH-28Jan: We need polish this section and eliminate the superfluous-->
       <t>
         An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only within the transport networks.
 
@@ -605,8 +611,7 @@ Legend
 	    </t>
 		<t>  
 		This document leverages the term Network Function (NF) to represent both types of endpoints in 
-		draft-ietf-teas-sf-aware-topo-model.
-		<!--<xref target="draft-ietf-teas-sf-aware-topo-model"/>. -->
+		<xref target="I-D.ietf-teas-sf-aware-topo-model"/>. 
 		</t>
 		</section>
 
@@ -687,11 +692,15 @@ Legend
     </t>
     <t>
 	Author's notes: This  service type EP is  new type of transport slice specific service function. We may call it transport slice
-	gateway.  
+	gateway.  Slice gateway concept is described in <xref target="I-D.homma-rtgwg-slice-gateway"/>.
     </t>
 
     </section>
+
     </section>
+
+<!--  SH-28Jan: The "Realization of Transpoort slice" section would be moved to  other document. -->
+
 
     <section title="Realization of Transport slice">
 	    <t>
@@ -706,7 +715,7 @@ Legend
           <figure anchor="fig_5G-Transport-NS" title="Example of Transport Slice 20 connecting gNBs to 5G Core UPF">
             <artwork align="center"><![CDATA[
   
-      <--- Transport slice(TSID:20) --->
+      <===Transport slice(TSID:20) ===>
            with SLO of latency, less 
            than 10[msec]
 
@@ -726,7 +735,7 @@ Legend
         <figure anchor="fig_FW-Transport-NS" title="Example of Transport Slice connecting Router to two firewalls">
           <artwork align="center"><![CDATA[
   
-    <--- Transport slice(TSID:30) --->
+    <=== Transport slice(TSID:30) ===>
            with SLO B/W 5Mbps
 
                  .----.         
@@ -765,7 +774,7 @@ Legends
         <figure anchor="fig_SFC-Transport-NS-1" title="Approach-1: Example of Transport Slice connecting Edge Routers ER1 and ER2 with SFC">
           <artwork align="center"><![CDATA[
 
-     <--- Transport slice(TSID:40) --->
+     <=== Transport slice(TSID:40) ===>
            with SLO of latency 30ms
 
           +-----+
@@ -786,9 +795,9 @@ Legends
         <figure anchor="fig_SFC-Transport-NS-2" title="Approach-2: Example of Transport Slice connecting Edge Routers ER1 and ER2 with SFC">
           <artwork align="center"><![CDATA[
 
-    <-- Transport slice (TSID:40) -->
+    <== Transport slice (TSID:40) ==>
           with SLO latency 30ms
-    <- TS41 -> <- TS42 ->  <- TS43 -->
+    <= TS41 => <= TS42 =>  <= TS43 =>
        SLO        SLO         SLO   
        5[ms]      20[ms]      5[ms]
 
@@ -979,14 +988,14 @@ Legends
                          | and ER2 with latency 30 [msec]                                      
                          v                               
                 +------------------+              +-----------+
-                | Transport slice  |<------------>|    SF     |  
+                | Transport slice  |<------------|    SF     |  
                 |   controller     |              |  Manager  |
                 +------------------+              +-----------+
                          | Realize transport slice 40 between      
                          | ER1 & ER2 traversing SF1 and SF2  
                          | with SLO of latency 30 [msec]  
                          V
-    <----------------- TS 40 ------------------->                        
+    <===============TS 40 ================>                    
             +-----+      
             | SF1 |      
             + === +   .----.         
@@ -1012,7 +1021,7 @@ Legends
                       | between ER1 and ER2
                       v
           +---------------------+            +-----------+
-          |  High level system  | <--------> | SF Manager|
+          |  High level system  | <--------| SF Manager|
           +---------------------+            +-----------+
                       | Create transport slice between ER1 and SF1,
                       |        with latency 5 [msec]
@@ -1032,8 +1041,8 @@ Legends
         |             |             | Realize TS 43 between SF2, ER2
         |             |             |         with latency 5 msec
         v             v             v 
-   <--TS 41-->   <--TS 42-->   <--TS 43 -->
-  <---------------- TS 40 ---------------->
+   <==TS 41==>   <==TS 42==>   <==TS 43 ==>
+  <=============TS 40============> 
             +-----+
           #=| SF1 |
           # +-----+ .----.
@@ -1065,6 +1074,8 @@ Legend
   <back>
     <references title="Informative References">
     &I-D.draft-contreras-teas-slice-nbi;
+    &I-D.draft-homma-rtgwg-slice-gateway;
+    &I-D.draft-ietf-teas-sf-aware-topo-model;
 <!--
       <?rfc include="reference.RFC.7665"?>
       
