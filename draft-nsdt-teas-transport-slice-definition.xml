@@ -207,7 +207,9 @@
          <t>SLA: Service Level Agreement</t>
       </list>
      </t>
-     
+    <t>
+	Author's notes: This list may be non-exhaustive. Also, light explanation for each term would be required.  
+    </t>     
      <!-- SH: 3GPP TS23.501 describes 
      " NSI ID: an identifier for identifying the Core Network part of a Network Slice instance when multiple Network Slice instances of 
      the same Network Slice are deployed, and there is a need to differentiate between them in the 5GC."
