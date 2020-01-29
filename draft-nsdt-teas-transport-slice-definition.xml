@@ -392,7 +392,7 @@ Legend:
 [EP12]----/     Transport Slice       /----[EP22]
   :      /        (SLOs e.g.         /
   :     / B/W > x bps, Delay < y ms)/
-[EP1m]-/___________________________/-------[EP23]
+[EP1m]-/___________________________/-------[EP2n]
 
 == == == == == == == == == == == == == == == == == ==
 
@@ -631,17 +631,17 @@ Legend
 
         <section title="Connectivity Patterns"> 
 		<t>
-		 Endpoints may be connected point to point, point to multipoint, or multi-point to multi-point based on the topology requested by the
-			customer.
-		   <list style="symbols">
-			<t hangText="Point to point (P2P):">
+		 Endpoints may be connected point to point (P2P), point to multipoint (P2MP), multi-point to point (MP2P), or multi-point to multi-point (MP2MP) based 
+         on the topology requested by the customer.
+		   <list style="hanging">
+			<t hangText="P2P pattern: ">
 			P2P type of connections are between 2 endpoints like a pseudowire, or a logical link. The interconnections
 				must represent the SLOs as requested by the customer.
 			</t>
-			<t hangText="Multi-point to point/multi-point to multi-point (MP2P/MP2MP)">
-				MP2P/MP2MP type connections will interconnect two or more endpoints together (one to many, 
+			<t hangText="P2MP/MP2P/MP2MP patterns: ">
+				P2MP/MP2P/MP2MP type connections will interconnect two or more endpoints together (one to many, 
 				many to one, many to many), representing an abstract
-				topology or graph. When describing MP2P/MP2MP scnearios it should be possible for each logical link to have 
+				topology or graph. When describing P2MP/MP2P/MP2MP scnearios it should be possible for each logical link to have 
 				different SLO than the other link. 
 			</t>
 		</list>
