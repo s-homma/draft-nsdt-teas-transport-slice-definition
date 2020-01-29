@@ -195,8 +195,12 @@
      <t>The terms and abbreviations used in this document are listed below.
        <list style="symbols">
  <!--        <t>E2E network slice: End-to-End network slice</t>  -->
-         <t>TSID: Transport Slice Identifier</t>
-	 <t>TSC: Transport Slice Controller</t>      
+         <t>E2E NS: End to End Network Slice</t>
+         <t>TS: Transport Slice</t>
+	     <t>TSC: Transport Slice Controller</t>
+         <t>TNC: Transport Network Controller</t>
+         <t>EP: Endpoint</t>
+         <t>EU: End User</t>
          <t>NBI: North Bound Interface</t>
          <t>SBI: South Bound Interface</t>
  <!--        <t>NF: Network Function</t>
@@ -205,10 +209,13 @@
          <t>WAF: Web Application Firewall</t> -->
          <t>SLO: Service Level Objective</t>
          <t>SLA: Service Level Agreement</t>
+         <t>B/W: Bandwidth</t>
+         <t>MTBF: Mean Time Between Failures</t>
+         <t>MRRT: Mean Time To Repair</t>
       </list>
      </t>
     <t>
-	Author's notes: This list may be non-exhaustive. Also, light explanation for each term would be required.  
+	Author's notes: This list may be non-exhaustive. Also, light explanation for each term would be required.  Or this section may be removed if it isn't needed.
     </t>     
      <!-- SH: 3GPP TS23.501 describes 
      " NSI ID: an identifier for identifying the Core Network part of a Network Slice instance when multiple Network Slice instances of 
