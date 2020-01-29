@@ -37,8 +37,10 @@
 <!ENTITY I-D.draft-ietf-6man-segment-routing-header SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-6man-segment-routing-header-08.xml">
 -->
 <!ENTITY I-D.draft-contreras-teas-slice-nbi SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-contreras-teas-slice-nbi-00.xml">
-<!ENTITY I-D.draft-homma-rtgwg-slice-gateway SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-homma-rtgwg-slice-gateway-01.xml">
+<!--<!ENTITY I-D.draft-homma-rtgwg-slice-gateway SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-homma-rtgwg-slice-gateway-01.xml">-->
 <!ENTITY I-D.draft-ietf-teas-sf-aware-topo-model SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-sf-aware-topo-model-04.xml">
+<!ENTITY I-D.draft-ietf-teas-enhanced-vpn SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-enhanced-vpn-04.xml">
+
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?> 
 <!-- used by XSLT processors --> 
@@ -162,10 +164,14 @@
 	<!-- SH-28Jan:  modified the following text for  emphasizing  benefitial features of network slicing. -->
     	<t>
        Network slicing is a methodology to generically describe the logical partitioning of network resources  
-       associated with a service or an application. Network slicing is expected to enables diverse 
+       associated with a service or an application. Network slicing is expected to enable diverse 
        devices/applications which have different requirements on communication to coexist on the same network 
-       efficiently. Also, a network slice sometimes traverses multiple domains, and generalizing of interafaces, 
-       operations, and managements would be important.  Some key applications which might benefit from the 
+       efficiently. Also, a network slice sometimes traverses multiple domains, and generalized interfaces, 
+       operations, and managements would be important.  
+       </t>
+
+       <t>
+       Some key applications which might benefit from the 
        use of network slicing include:
         <list style="symbols">
           <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
@@ -173,10 +179,12 @@
           <t>Network infrastructure sharing among the operators</t>
           <t>NFV connectivity (Data Center Interconnect)</t>
         </list>
-     
+       </t>
+
+     <t>
       A 'network slice' is composed of different endpoints, application logic and specific connectivity between them. 
       Transport slices are a part of network slice that fulfills connection requirements between endpoints. Transport slices 
-      are created and managed within the scope of transport networks (e.g. IP, MPLS, GMPLS). 
+      are created and managed within the scope of transport networks (e.g. IP, MPLS, optical). 
       </t>
       <t>
       This document provides a definition of slice in transport network (called "transport slice"), and describes its characteristics.
@@ -191,8 +199,8 @@
 	 <t>TSC: Transport Slice Controller</t>      
          <t>NBI: North Bound Interface</t>
          <t>SBI: South Bound Interface</t>
-         <t>NF: Network Function</t>
- <!--        <t>SF: Service Function</t> 
+ <!--        <t>NF: Network Function</t>
+         <t>SF: Service Function</t> 
          <t>DPI: Deep Packet Inspection</t>
          <t>WAF: Web Application Firewall</t> -->
          <t>SLO: Service Level Objective</t>
@@ -231,16 +239,19 @@
 
     <!-- SH-28Jan: We need polish this section and eliminate the superfluous-->
       <t>
-        An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific assurance to the customer. A transport slice concerns those assurance aspects only within the transport networks.
-
-    To illustrate the IETF definitions of both E2E network slice and transport slice, consider the network shown in <xref target="fig_E2E-NS"/>, where a network operator has an E2E network slice that traverses multiple technology-specific networks. Each of these networks might use any number of technologies, including IP, MPLS, Fiber-Optics (e.g. WDM, DWDM), Passive Optical Networking (PON), Microwave, etc.
+        An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific 
+        assurance to the customer. A transport slice concerns those assurance aspects only within the transport networks.
+        To illustrate the IETF definitions of both E2E network slice and transport slice, consider the network shown in <xref target="fig_E2E-NS"/>, 
+        where a network operator has an E2E network slice that traverses multiple technology-specific networks. Each of these networks might use 
+        any number of technologies, including IP, MPLS, Fiber-Optics (e.g. WDM, DWDM), Passive Optical Networking (PON), Microwave, etc.
       </t>
       <t>
-    Each of these networks includes multiple (physical or virtual) nodes and may also provide network functions beyond simply carrying of technology-specific protocol data units. The types of nodes used in any of these networks may include:
+       Each of these networks includes multiple (physical or virtual) nodes and may also provide network functions beyond simply carrying of technology-specific 
+       protocol data units. The types of nodes used in any of these networks may include:
       <list style="symbols">
-        <t>Packet Switches (e.g. Routers, Bridges)</t>
+        <t>Packet Switches (e.g., Routers, Bridges)</t>
         <t>Application servers</t>
-        <t>Firewalls</t>
+        <t>Service Functions(e.g., Firewall, Loadbalancer)</t>
         <t>Radio Access Network (RAN) components</t>
         <t>Mobile Core components</t>
         <t>Microwave transceivers</t>
@@ -282,17 +293,14 @@ Legend:
 
       <t>
       Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it should create 
-      one or more of the following two types of artefacts:
-      <list style="symbols">
-        <t>Transport slice</t>
-        <t>Other slice (application logic or other non-IETF slice components)</t>
-        </list>
-	  </t>
+      one or more of transport slices and other slices (application logic or other network function instances).
+      </t> 
       
       <t>
        Note:  defining the other slices is out-of-scope of the current work.
       </t>
 
+<!-- SH-29Jan: E2E slice is not our main target, and the following example can be removed.
       <t>
     To further clarify the concept of E2E network slice, consider the network operator-z has various 
     customers. One of the customers, needs a separate and an independent E2E logical network 
@@ -313,23 +321,25 @@ Legend:
       </t>
       <t>
     It may also be possible that more than one customer and/or service types are associated with an E2E network slice.
-        <!-- KM: some issues here. This example seems not very accurate
+    
+         KM: some issues here. This example seems not very accurate
         I can see what you want to say but CCTV as a service is just video streaming service, it can be used by
         NYPD or traffic police for public safety and traffic violation - 2 different services
           I suggest to comment this line below for now. Later we should talk about service types - then add more.
-        -->
+        
     For instance, an E2E network slice is associated with not only to service type CCTV 
     but another service "Public Safety", i.e. NS ID 10 is used for two services for City of NY.
       </t>
+-->
     </section>
 
 
-    <section title="IETF Definition and Scope of Transport slice">
+    <section title="Definition and Scope of Transport slice">
 <!-- SH-23dec: This definition is not for as term but for as transport slice itself, and I'd like return this sub title to original one.-->
       <section title="Transport Slice Definition">
 
         <t>
-    The basic IETF definition of a transport slice is as follows:
+    The basic definition of a transport slice is as follows:
       </t>
         <t>
         "A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)".
@@ -418,10 +428,14 @@ Legend
 	
 	<t> A "transport slice" addresses a set of technology-agnostic connections between various 
 		endpoints with certain SLOs.  The managing entity or operating stakeholder of a transport slice is 
-		called a Slice operator. </t> 
-   <t> "Transport slice realization" is the use of a specific technology to realize the SLOs in 
-	   the operator's network.  While the transport slice itself is technology agnostic, its realization 
-	   is technology specific.  A transport slice may be realized by allocating appropriate resources into 
+		called a Slice operator. 
+    </t> 
+
+<!-- SH-29Jan: The following text seems redundant, and I shaped up this. Also, I added introduction of VPN+ as a reference. -->
+   <t>
+       Transport slice can be realized by using  specific technologies in the operator's network.  
+       Soem technology sets for realizing a transport slice are introduced in <xref target="I-D.ietf-teas-enhanced-vpn"/>.
+       A transport slice may be realized by allocating appropriate resources into 
 	   one or more networks. The managing entity realizing a transport slice is  
 		referred to as realizing network operator in this document. </t>
 
@@ -495,28 +509,28 @@ Legend
         <figure anchor="fig_interfaces" title="Interface of Transport Slice Controller">
           <artwork align="center">
 		<![CDATA[
-        |------------------------------------------|
+        +------------------------------------------+
         |                Customer                  |
-        |------------------------------------------|
+        +------------------------------------------+
                              A
                              |
                              V
-        |------------------------------------------|
+        +------------------------------------------+
         |         A highter level system           |
         |   (e.g e2e network slice orchestrator)   |
-        |------------------------------------------|
+        +------------------------------------------+
                              A
                              | TSC NBI
                              V
-        |------------------------------------------|
+        +------------------------------------------+
         |         Transport Slice Controller       |
-        |------------------------------------------|
+        +------------------------------------------+
                              A
                              | TSC SBI
                              V
-        |------------------------------------------|
+        +------------------------------------------+
         |           Network Controller(s)          |
-        |------------------------------------------|
+        +------------------------------------------+
 
     ]]></artwork>
         </figure>
@@ -617,19 +631,18 @@ Legend
 
         <section title="Connectivity Patterns"> 
 		<t>
-		 Endpoints may be connected point to point or point to multipoint based on the topology requested by the
+		 Endpoints may be connected point to point, point to multipoint, or multi-point to multi-point based on the topology requested by the
 			customer.
 		   <list style="symbols">
 			<t hangText="Point to point (P2P):">
 			P2P type of connections are between 2 endpoints like a pseudowire, or a logical link. The interconnections
 				must represent the SLOs as requested by the customer.
 			</t>
-			<t hangText="Multi-'point to point' (MP2P)">
-				MP2P type connections will interconnect two or more endpoints together (one to many, 
+			<t hangText="Multi-point to point/multi-point to multi-point (MP2P/MP2MP)">
+				MP2P/MP2MP type connections will interconnect two or more endpoints together (one to many, 
 				many to one, many to many), representing an abstract
-				topology or graph. When describing MP2P scnearios it should be possible for each logical link to have 
+				topology or graph. When describing MP2P/MP2MP scnearios it should be possible for each logical link to have 
 				different SLO than the other link. 
-
 			</t>
 		</list>
 	    </t>
@@ -692,7 +705,7 @@ Legend
     </t>
     <t>
 	Author's notes: This  service type EP is  new type of transport slice specific service function. We may call it transport slice
-	gateway.  Slice gateway concept is described in <xref target="I-D.homma-rtgwg-slice-gateway"/>.
+	gateway.  
     </t>
 
     </section>
@@ -727,8 +740,9 @@ Legend
   <back>
     <references title="Informative References">
     &I-D.draft-contreras-teas-slice-nbi;
-    &I-D.draft-homma-rtgwg-slice-gateway;
+<!-- &I-D.draft-homma-rtgwg-slice-gateway;-->
     &I-D.draft-ietf-teas-sf-aware-topo-model;
+    &I-D.draft-ietf-teas-enhanced-vpn;
 <!--
       <?rfc include="reference.RFC.7665"?>
       
