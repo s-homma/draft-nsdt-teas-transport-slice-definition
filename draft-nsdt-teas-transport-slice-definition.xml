@@ -69,7 +69,7 @@
 <?rfc subcompact="no" ?> 
 <!-- keep one blank line between list items --> 
 <!-- end of list of popular I-D processing instructions --> 
-<rfc category="info" docName="draft-rekui-transport-slice-definition-00">
+<rfc category="info" docName="draft-rokui-transport-slice-definition-00">
   <!-- ***** FRONT MATTER ***** --> 
 
 
@@ -555,8 +555,8 @@ Legend
              <t>Guaranteed Bandwidth</t>
              <t>Guaranteed Delay</t>
              <t>Prevention of Jitter</t>
-             <t>High Reliability (i.e., low packet loss rate)</t>
-             <t>High Availability (i.e., MTBF, MTTR)</t>
+             <t>Reliability (i.e., low packet loss rate)</t>
+             <t>Availability (i.e., MTBF, MTTR)</t>
              <t>Secure network</t>
              <t>etc.</t>
 
