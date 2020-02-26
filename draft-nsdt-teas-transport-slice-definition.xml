@@ -323,7 +323,7 @@ Legend:
         "A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)".
       </t>
     
-	  <t> The definition is similar to the one in <xref target="I-D.ietf-teas-enhanced-vpn"/>.
+	  <t> The definition is similar to that in <xref target="I-D.ietf-teas-enhanced-vpn"/>.
 		</t>
         <t>
 		Note: The term sub-slice or slice-subnet is used by many standard organizations 
