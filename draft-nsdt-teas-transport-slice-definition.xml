@@ -201,7 +201,7 @@
          <t>E2E NS: End to End Network Slice</t>
          <t>TS: Transport Slice</t>
 	     <t>TSC: Transport Slice Controller</t>
-         <t>TNC: Transport Network Controller</t>
+			 <!-- <t>TNC: Transport Network Controller</t> -->
          <t>EP: Endpoint</t>
          <t>EU: End User</t>
          <t>NBI: North Bound Interface</t>
@@ -279,30 +279,30 @@ Legend:
 
 
       <t>
-      Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it should create 
-      one or more of transport slices and other slices (application logic or other network function instances).
+      Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it may create 
+      one or more of transport slices and other slices (application logic or other system functions).
       </t> 
       
       <t>
        Note:  defining the other slices is out-of-scope of the current work.
       </t>
       <t>
-    To further clarify the concept of an E2E network slice, consider the network operator-z has various 
-    customers. One of the customers, needs a separate and an independent E2E logical network 
-    for a service (e.g. CCTV, autonomous driving, HD map, etc.) and has a specific network SLO requirement 
-    (e.g. a secure connection with an E2E latency less than 5ms) from End User-x (EU-x) to End User-y (EU-y) to 
-    the other side. This E2E logical network is called an "E2E network slice".  A typical example of EU-x in 5G 
-    is the User equipment such as infotainment unit in the car, CCTV, Car for autonomous driving, etc. and a 
+    To explain the concept of an E2E network slice, consider a network operator-z has various 
+    customers. One of the customers needs an independent E2E logical network 
+    for a service (e.g. CCTV, autonomous driving, HD map, etc.) with a specific network SLO requirement 
+		e.g. a secure connection with an E2E latency less than 5ms, from End User-x (EU-x) to End User-y (EU-y). This 
+		E2E logical network is called an "E2E network slice".  A typical example of EU-x maybe 
+    a 5G user equipment such as an infotainment unit in a car, CCTV, or a car for autonomous driving, etc. and a 
     typical example of EU-y in 5G is 5G application server, IMS etc.
       </t>
       <t>
-    In <xref target="fig_E2E-NS"/> we use the term "E2E network slice" to show the logical 
+    In <xref target="fig_E2E-NS"/>,  "E2E NS" shows the logical 
     network with requested SLO for EU-x to EU-y. It is important to consider that an "E2E network slice" is 
-    associated with a customer and a service type (e.g. CCTV service, autonomous driving etc.).
+    associated with a customer and a specific service type (e.g. CCTV service, autonomous driving etc.).
       </t>
 
       <t>
-    For example, a customer "City of NY" would like to connect all its CCTV cameras for the entire city to one or more locations for viewing or collection. To this end, it requests local carrier - 'operator-z' in NY to create a new E2E network slice with a bandwidth no-less-than 10Mbps from each CCTV coverage area. In this case, a single E2E network slice will be created by the operator-z for customer "City of NY", service type of CCTV and requested bandwidth connecting all the CCTV camera zones to one or more control-centers for the collection of video data.
+    As a concrete example, a customer "City of NY" would like to connect all its CCTV cameras for the entire city to one or more locations for viewing or collection. To this end, it requests local carrier - 'operator-z' in NY to create a new E2E network slice with a bandwidth no-less-than 10Mbps from each CCTV coverage area. In this case, a single E2E network slice will be created by the operator-z for customer "City of NY", service type of CCTV and requested bandwidth connecting all the CCTV camera zones to one or more control-centers for the collection of video data.
       </t>
       <t>
     It may also be possible that more than one customer and/or service types are associated with an E2E network slice.
@@ -323,6 +323,8 @@ Legend:
         "A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)".
       </t>
     
+	  <t> The definition is similar to the one in <xref target="I-D.ietf-teas-enhanced-vpn"/>.
+		</t>
         <t>
 		Note: The term sub-slice or slice-subnet is used by many standard organizations 
 		to refer to "Transport Slice" or "Other Slice" (i.e. transport sub-slice or transport slice-subnet).
@@ -393,7 +395,7 @@ Legend
       In short, the structure of a transport slice involves both definition and its realization.
       </t>
 
-	
+			<!--	
 	<t> A "transport slice" addresses a set of technology-agnostic connections between various 
 		endpoints with certain SLOs.  The managing entity or operating stakeholder of a transport slice is 
 		called a Transport Slice Controller. 
@@ -403,7 +405,7 @@ Legend
        Transport slice realization uses specific technologies in the operator's network.  
        The realization may require allocating appropriate resources into one or more networks and a mapping to transport slice. The managing entity realizing a transport slice is  
 		referred to as the network controller. </t>
-
+-->
    <t>
 		A transport slice is built based on a request from a higher operations system.  The interface to higher operations 
 		systems should be technology-agnostic, 
@@ -445,26 +447,20 @@ Legend
 		</section>
 	 <section anchor="interfaces" title="Transport Slice Controller Interfaces">
 		 
-		 <t> The above stakeholders help to clearly define the scope and type of interfaces necessary to deploy, 
-			 monitor and manage transport slices. The interface between a transport slice controller and network controller(s) 
-			 has to be technology-agnostic, to generalize deployment of different types of network slice services. 
-			 Whereas the interface from a network 
-			 controller to the infrastructure may be diverse to support a variety of underlying transport technologies.
-			 
-			 Thus, the scope of two types of interfaces are defined as follows:
+			 <t> To provide common means of provisioning, operating and monitoring the transport slices, interractions between 
+					 different stakeholders should be clearly defined.  This happens in two parts with reference to 
+					 the TSC (see <xref target="fig_interfaces"/>).
 
 	   	<list style="hanging">
 		 <t hangText="TSC Northbound Interface (NBI):">
 			 The TSC Northbound Interface is a bidirectional interface between a higher level system, e.g. 'E2E network slice orchestrator' 
-			 and the 'Transport slice controller'.  Different types of orchestrators will have
-			 a common interface to transport slices through NBI.  Operations to create, delete, augment and monitor for service assurance of 
-			 those transport slices should be supported through NBI.
+			 and the 'Transport slice controller'.  It is a technology agnostic interface to generalize deployment of diffferent type 
+			 of transport slices. Different network orchestrators can use same NBI with the TSC. 
 		 </t>
 		 <t hangText="TSC Southbound Interface (SBI):">
 			 The TSC Southbound interface is a bidirectional interface between 'Transport slice controller' and network controller(s).
-			 These interfaces are technology-specific and can utilize many of the existing data models 
-			 such as L2SM, L3SM, VPN, etc. They may need extensions to provide additional operations to 
-			 match the NBI operations mentioned above. The TSC maintains mappings to network and connectivity resources allocated by one or many network controllers.
+			 These interfaces are technology-specific and can utilize many of the existing data models such as L2SM, L3SM, VPN, etc. 
+			 The TSC maintains mappings to network and connectivity resources allocated by one or many network controllers.
 		 </t>
 
  		</list> 
@@ -496,10 +492,16 @@ Legend
 
     ]]></artwork>
         </figure>
-		<xref target="fig_interfaces"/> defines the SBI and NBI in the context of transport slices and their
-	    realization.	
         </t>
 	  </section>
+ <section title="Transport slice Realization">
+	 <t>
+	 Realization of a Transport Slice is an actual instantiation of a transport slice. It is technology specific, created and maintained over south bound interfaces. The Network controller(s) export the connectivity and resource mappings to the TSC. The network controller hides the details of underlying resources from the TSC.
+ </t> <t>
+	 Realization may be achieved in the form of either physical, logical, or overlay connectivity through VPNs, tunnels, segment routing, SFC, etc. Accordingly, endpoints may be realized as physical or logical service or network functions. 
+ </t>
+ 
+ </section>
       </section>
     </section>
 	
@@ -515,7 +517,7 @@ Legend
 			A transport slice is defined in terms of several quantifiable objectives or SLOs. These objectives define a set of 
 			what network resource parameters or values necessary to provide a service a given transport slice. SLOs need not concern 
 			with 'how' will they get implemented or realized in the underlying networks. They may be defined along
-		   the dimensions of operations (time, capacity, compute...), reliability, availability attributes. A non-exhaustive 
+		   the dimensions of operations (time, capacity, compute...), reliability and, availability attributes. A non-exhaustive 
 		   list of characteristics types for transport slice is described below:
             <list style="symbols">
 			<t>Guaranteed Bandwidth: assurance of maximum, minimum or range of the bandwidth requirement.</t>
@@ -530,7 +532,7 @@ Legend
 			<t>Packet loss rate: To specify permissible packet loss rate between two endpoints. For critical networks, 
 				this number will be very close to zero.
 			</t>
-			<t>NF resources: The endpoints in section <xref target="endpvar"/> performance depend on resource allocated to 
+			<t>NF resources: The endpoints in <xref target="endpvar"/> performance depend on resource allocated to 
 			    those functions and can be specified in terms of compute, memory and access control objectives points. 
 			 </t>
 			<t> Availability: concerns with how quickly network becomes available after a fault. The requirements are 
@@ -554,10 +556,11 @@ Legend
 			The framework may further specify mechanisms for the performance, assurance and monitoring of these objectives.
            </t>
            <t>
-			   Note: Additional consideration may be necessary such as "a transport slice" traverse only through the trusted 
-			   domains. However, the notion of a "trusted domain" is to be clarified further. Above mentioned objectives should 
-			   also make it clear if they are aggregates or on per flow basis, since a transport slice will have multiple flows.</t>
-		   <t> Further description  of  a set of measurable attributes is captured in <xref target="I-D.contreras-teas-slice-nbi"/>. 
+			Note: Additional objectives may be necessary to capture, such as specifying  
+			well defined paths or domains that a slice may transit through. A transport slice 
+			will carry multiple flows between the 2 endpoints, therefore objectives should also 
+			say if they are aggregates or on per flow basis.</t>
+		   <t> Further description  of a set of measurable attributes is captured in <xref target="I-D.contreras-teas-slice-nbi"/>. 
            </t>
 		   <t> 
 			  SLA vs SLO discussion: In defining transport slices, the term  SLO instead of SLA is used even though SLAs are more commonly
@@ -571,31 +574,32 @@ Legend
 
         <section title="Isolation discussion"> 
 		   <t> 
-			   Isolation here means that the behavior and performance of one transport slice does not impact other slices running 
-			   over the same underlying infrastructure or logically sharing network resources. When the shared resource pools begin to 
-			   become saturated, SLO violations can happen to impact the performance or operation of a slice. Since slices are 
-			   logical partitioning over shared resources, it is an inherent characteristic. At the time of transport slice realization, 
-			   the network controller should be responsible to provide isolation.
-
-			   But we have also said that the network controller does not need to understand the transport slice concept. It is simply
-			   fulfilling the resource request. In that case, it may become necessary for a slice controller (TSC) to ask for 
-			   isolation to prevent SLO violations and monitor those network resources carefully. 
+			   Slice isolation means that the behavior and performance of one transport slice does not impact other slices running 
+			   over the same underlying infrastructure or logically shared network resources. When the shared resource pools begin to 
+			   become saturated, SLO violations can happen, impacting the performance or operation of service associated with the transport slice. Since the transport slices are 
+				 logically partitioned over the shared resources, a certain degree of isolation is expected. 
+				 </t>
+				 <t>
+				 When realizing a transport slice, 
+			   the network controller should be responsible for allocating (hence isolating) resources to that slice.
+	But we have also said that the network controllers need not  understand the transport slice concept. It maybe simply
+	fulfilling the resource request from the upper layer entity without knowing 
+				it is realizing a transport slice with strict SLOs. 
+	In that case, it may become necessary for a TSC to explicitly ask for isolation 
+				to prevent any SLO violations.</t> 
 			   
-			   SLO violations can occur for two reaons and correcponsing statements apply 
+				 <t> SLO violations can occur for two reasons and corresponding statements apply 
 			   <list style="symbols"> 
 				<t>
-				if the network controller allows interference (simultaneous access) to a shared resource from 
-			    two or more slices. Then if SLO guarantees are necessary, then the controller should be informed.
-   			    The terms hard and soft isolation are borrowed from <xref target="I-D.ietf-teas-enhanced-vpn"/>.
-				mandates some guarantee of SLO.
-			      <list style="symbols"> 
-				    <t> Hard isolation: an SLO for a transport slice is always guaranteed. The network controller will limit shared 
-				  	  resource saturation to the point below the guarantees of resource allocated to the slice. </t>
-				    <t> Soft isolation: an SLO for a transport slice is guaranteed with in the tolerance specified in SLO. 
-				  	  The controller will maintain the shared resource saturation with in the tolerance range of resource 
-				  	  allocated to the slice. The term tolerance is proposed because, the definition of transport slice
-				    mandates some guarantee of SLO.</t>
-            	  </list>
+				The network controller allows interference: i.e. simultaneous access to a shared resource between 
+				two or more slices. If the SLO guarantees are strictly required, then the network controller  can be informed about 
+				the requirement using hard- or soft- type of isolations (the terms hard- and soft- isolation are reused from 
+				<xref target="I-D.ietf-teas-enhanced-vpn"/>).
+			  <list style="symbols"> 
+				<t> Hard isolation: an SLO for a transport slice is always guaranteed. The network controller will strictly dedicate shared resource to the transport slice and not allow other flows to use that resource. </t>
+				<t> Soft isolation: an SLO for a transport slice is guaranteed with in the tolerance specified in SLO. 
+				The controller will maintain the shared resource saturation with in the tolerance level of the slice, where tolerance indicates a range with in which SLO guarantees of transport slice are acceptable.</t>
+            </list>
 				  </t>
 				   <t> Resource failure or fault occurs.
 			      <list style="symbols"> 
@@ -604,15 +608,14 @@ Legend
 						some number of seconds, as specified in the SLO </t>
 				    <t> Protection isolation: the network path is protected with specified backup path 
 						as specified in the SLO </t>
-					<t> Performance isolation:  * remove .. not clear*.  </t>
             	  </list>
 			 	  </t>
              </list>
 			</t>
-			<t> Author's Note: Further discussion is deferred to the framework document. 
-			</t>
 			<t>Now, the question to resolve at design is whether hard or soft parameters be associated with each SLO individually 
 				or is a characteristic of an entire transport slice.</t>
+			<t> Author's Note: This discussion is deferred to the framework document. 
+			</t>
 			<t>We consider fault-related isolations as part of the specification in SLOs.</t>
         </section>
 
@@ -733,14 +736,6 @@ Legend
     </section>
 
 
- <section title="Realization of Transport slice">
-	 <t>
-	 Realization of a Transport Slice is its integral part and is created and maintained over south bound interfaces. Since realization of transport slice is technology specific, it is handled by the network controller which also exports these mappings to the TSC. During realization resources are allocated leading to the instantiation of a transport slice in the network. The network controller hides the details of underlying resources from the TSC and exports, logical handles to those resources.
- </t> <t>
-	 Realization may be achieved in the form of describing either physical, logical, or overlay connectivity through VPNs, tunnels, segment routing, SFC, etc. Accordingly, endpoints may be realized as physical or logical service or network functions. As an example, a possible candidate technology for building transport slices is described in <xref target="I-D.ietf-teas-enhanced-vpn"/>.
- </t>
- 
- </section>
 	 
     <section title="Security Considerations">
     <t>
