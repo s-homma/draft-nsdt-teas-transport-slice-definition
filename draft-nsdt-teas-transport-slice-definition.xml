@@ -286,7 +286,7 @@ are used to satisfy  specific Service Level Objectives (SLO)".
 			</t>
 			<t>Resource redundancy: represents reliability attributes in which a backup or duplicate resources such as 
 				 path (same SLOs - latency, bandwidth, etc.), network functions (same compute, memory, etc.) 
-				 To meet no packet loss objective, packet replication maybe necessary to guarantee that atleast packets 
+				 To meet no packet loss objective, packet replication maybe necessary to guarantee that at least packets 
 				 from one path was achieved. However, we should consider this as 'how' aspect of objective and not 'what'.
 			 </t>
 			 <t>Security: The objective of securing a transport slice concern with three attributes:
@@ -345,7 +345,7 @@ are used to satisfy  specific Service Level Objectives (SLO)".
 				<t> Hard isolation: an SLO for a transport slice is always guaranteed. The network controller will strictly dedicate resource to the transport slice (i.e. it will not be shared). </t>
 				<t> Soft isolation: an SLO violation for a transport slice may happen due to resource interference. In such cases,
 					the transport slice's resource usage will be maintained by the controller within a certain tolerance
-					level of that objectective.</t>
+					level of that objective.</t>
             </list>
 				  </t>
 				   <t> Resource failure or fault occurs.
