@@ -69,14 +69,14 @@
 <?rfc subcompact="no" ?> 
 <!-- keep one blank line between list items --> 
 <!-- end of list of popular I-D processing instructions --> 
-<rfc category="info" docName="draft-rokui-transport-slice-definition-00">
+<rfc category="info" docName="draft-nsdt-transport-slice-definition-00">
   <!-- ***** FRONT MATTER ***** --> 
 
 
 <!--test2-->
 
   <front>
-    <title abbrev="draft-rokui-transport-slice-definition">
+    <title abbrev="draft-nsdt-transport-slice-definition">
     IETF Definition of Transport Slice
     </title>
 
@@ -296,6 +296,28 @@ are used to satisfy  specific Service Level Objectives (SLO)".
 				 between two or more slices or other flows on the same infrastructure. Isolation is implied by the definition of 
 				 transport slice itself (logical partitioning...).
 		     </t>
+			 <t>		 
+	Resolution of guarantee: The above objectives can be resolved in to  either 
+	hard or soft guarantees. A hard guarantee is the one that 
+	is not affected by other traffic.  
+	In a soft guarantee, a violation (of the guarantee) may occur in rare 
+	cases due to resource interference.  In
+    such cases, the guarantee will be maintained by the network controller
+      within a certain tolerance level of that objective.
+	  Note that a hard guarantee does not prevent from hardware failures, such as losing a node.
+	  Additional protection against such issues is possible, by specifying those characteristics separately (see item "resource redundancy" below).
+
+      Note also that the hard and soft guarantees do not say anything
+      about the specific implementation of how these guarantees are
+      achieved. Different implementations might use different
+      techniques, from avoiding oversubsription to dedicating
+      particular links or their virtual fractions to particular
+      transport slices.
+  </t>
+
+  <t> Resource isolation: In some cases it may be necessary to dedicate
+   specific resources to the slice, for instance, for security reasons.
+   </t>
              <t>etc.</t>
 
             </list>
@@ -319,54 +341,72 @@ are used to satisfy  specific Service Level Objectives (SLO)".
 		   </t>
 
         <section title="Isolation discussion"> 
-		   <t> 
-			   Slice isolation means that the behavior and performance of one transport slice does not impact other slices running 
-			   over the same underlying infrastructure or logically shared network resources. When the shared resource pools begin to 
-			   become saturated, SLO violations can happen, impacting the performance or operation of service associated with the transport slice. Since the transport slices are 
-				 logically partitioned over the shared resources, a certain degree of isolation is expected. The degree of isolation can be derived from availability characteristics requested.
-				 </t>
-				 <t>
-				 When realizing a transport slice, 
-			   the network controller should be responsible for allocating and providing resources isolation as requested to that slice.
-	But we have also said that the network controllers need not  understand the transport slice concept. It maybe simply
-	fulfilling the resource request from the upper layer entity without knowing 
-				it is realizing a transport slice with strict SLOs. 
-	In that case, it may become necessary for a TSC to explicitly ask for isolation 
-				to prevent any SLO violations.</t> 
-			   
-				 <t> SLO violations can occur for two reasons and corresponding statements apply 
-			   <list style="symbols"> 
-				<t>
-				Shared resource interference: i.e. multiple transport slices simultaneously share the same resource, and 
-				one of them consume the resource in surplus. If the SLO guarantees are strictly required, then the network controller can be informed about 
-				the requirement using hard- or soft- type of isolations (the terms hard- and soft- isolation are reused from 
-				<xref target="I-D.ietf-teas-enhanced-vpn"/>).
-			  <list style="symbols"> 
-				<t> Hard isolation: an SLO for a transport slice is always guaranteed. The network controller will strictly dedicate resource to the transport slice (i.e. it will not be shared). </t>
-				<t> Soft isolation: an SLO violation for a transport slice may happen due to resource interference. In such cases,
-					the transport slice's resource usage will be maintained by the controller within a certain tolerance
-					level of that objective.</t>
-            </list>
-				  </t>
-				   <t> Resource failure or fault occurs.
-			      <list style="symbols"> 
-				    <t> Restoration isolation: the network is not impacted for a period longer than the given time. For example, 
-						failover or the service restoration takes no longer than  
-						some number of seconds. This is specified by Availability  SLO.</t>
-				    <t> Protection isolation: the network path is protected with specified backup path. 
-						This is specified by Availability  SLO. </t>
-            	  </list>
-			 	  </t>
-             </list>
-			</t>
-			<t>Now, the question to resolve at design is whether hard or soft parameters be associated with each SLO individually 
-				or is a characteristic of an entire transport slice.</t>
-			<t> Author's Note: This discussion is deferred to the framework document. 
-			</t>
-			<t>We consider fault-related isolations as part of the specification in SLOs.</t>
-        </section>
+	<t>
+		Due to overloading of the term, a further discussion is added to highlight two 
+		aspects of isolation, first the resolution of isolation of an objective (as described above) and second, the dedicated use or a hard-separation perspective of the resource. 
+	</t>
+			<t>
+	Providing a hard resolution of guarantee for the characteristics of a 
+	transport slice means that the behavior and performance of other transport slices
+   should not impact that slice, even if they run over the same underlying
+   infrastructure or use logically shared network resources.
+   </t>
+   <t>
+	  In the context of soft resolution of guarantees, since the transport slices are 
+	  logically partitioned over the
+      shared resources, a certain degree of commitment to the guarantee
+      is expected even when it is not hard.  When the shared resource
+      pools begin to become saturated, SLO violations can happen,
+      however, impacting only the performance or operation of service
+      associated with the transport slice.
+   </t>
+   <t>
+   This degree of isolation can be derived from availability
+   characteristics requested, such as whether a hard or soft guarantee was
+   requested. Requesting a hard guarantee may commit more resources
+   than would be required for a softer limit.</t>
+   <t> In addition, resource isolation
+	   may be applied to ensure dedicated access to a particular node, for instance. In such 
+	   requests a dedicated allocation to a link, node and/or other resources to create a 
+	   transport slice for a perticular service. For example, a misison-critical service 
+	   may ask for a dedicated router and/or a link or port for complete isolation from other
+	   services.
+   </t>
+   <t>
+   When realizing a transport slice, a network controller should be
+   responsible for allocating and providing resources according to the specified
+   objectives.
+   </t>
+	<t> SLO violations can occur for two reasons and corresponding statements apply 
+	<list style="symbols"> 
+	<t>
+      Shared resource interference: i.e. multiple transport slices
+      simultaneously share the same resource, and one of them consume
+      the resource in surplus.  If the SLO guarantees are strictly
+      required, then the network controller can be informed of this by
+      requesting a hard guarantee. Note that the terms hard and soft
+      limit are requirement oriented and different from what is
+	  specified in, <xref target="I-D.ietf-teas-enhanced-vpn"/>). </t>
 
-        </section>
+     <t>  
+	   Resource failure or fault occurs, such as a link or node failure.
+       Where it is important to defend against these, the relevant
+       characteristics on resoure redundancy (and perhaps some
+       other characteristics on restoration speed and other factors) need to be specified.
+	     <list style="symbols"> 
+		  <t> Restoration isolation: the network is not impacted for a period 
+			  longer than the given time. For example, 
+			  failover or the service restoration takes no longer than  
+			  some number of seconds. This is specified by Availability  SLO.</t>
+		  <t> Protection isolation: the network path is protected with specified backup path. 
+		    This is specified by Availability  SLO. </t>
+          </list>
+          </t>
+      </list>
+	  </t>
+	</section> 
+
+    </section>
 		<!--</section>-->
 
    
@@ -749,7 +789,7 @@ Legend:
     
     <section title="Acknowledgment">
     <t>
-    The entire TEAS NS design team and everyone participating in those discussion has contributed to this draft.
+    The entire TEAS NS design team and everyone participating in those discussion has contributed to this draft. Particularly, Eric Gray, Xufeng Liu, Jie Dong, Jeff Tansula, and Jari Arkko for a thorough review among other contributions.
     </t>
     </section>
     
