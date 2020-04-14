@@ -37,12 +37,13 @@
 <!ENTITY I-D.draft-qiang-coms-netslicing-information-model SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-qiang-coms-netslicing-information-model-01.xml">
 <!ENTITY I-D.draft-ietf-spring-segment-routing-mpls SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-spring-segment-routing-mpls-11.xml">
 <!ENTITY I-D.draft-ietf-6man-segment-routing-header SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-6man-segment-routing-header-08.xml">
+<!ENTITY I-D.draft-nsdt-teas-ns-framework   SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-nsdt-teas-ns-framework-02.xml">
 -->
 <!ENTITY I-D.draft-contreras-teas-slice-nbi SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-contreras-teas-slice-nbi-00.xml">
 <!--<!ENTITY I-D.draft-homma-rtgwg-slice-gateway SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-homma-rtgwg-slice-gateway-01.xml">-->
 <!ENTITY I-D.draft-ietf-teas-sf-aware-topo-model SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-sf-aware-topo-model-04.xml">
 <!ENTITY I-D.draft-ietf-teas-enhanced-vpn SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-enhanced-vpn-04.xml">
-
+<!ENTITY I-D.draft-nsdt-teas-ns-framework SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-nsdt-teas-ns-framework-02.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -321,7 +322,8 @@ are used to satisfy  specific Service Level Objectives (SLO)".
              <t>etc.</t>
 
             </list>
-			The framework may further specify mechanisms for the performance, assurance and monitoring of these objectives.
+			The framework <xref target="I-D.nsdt-teas-ns-framework"/> may further specify mechanisms for the
+            performance, assurance and monitoring of these objectives.
            </t>
            <t>
 			Note: Additional objectives may be necessary to capture, such as specifying
@@ -649,7 +651,10 @@ Legend
        technology-specific and can utilize many of the existing data
        models such as L2SM, L3SM, VPN, etc. TSC may request for network resources or request of their current state for SLO assurance.
 		 </t>
-
+     <t> Note on technology -agnostic vs -specific use: These terms are used in
+     a transport slice's context. A transport slice from customer level in TSC, is not concerned with the underlying
+     network protocol or technology (such as L2VPN, L2VPN, etc.) or corresponding service model (L2SM, L3SM, etc.) representing that protocol. Therefore, for example, both L2VPN, L2SM are technology-specific from a customer of a slice's view. Technology-agnostic simply means representing a transport slice completely as a logical entity.
+   </t>
  		</list>
         <figure anchor="fig_interfaces" title="Interface of Transport Slice Controller">
           <artwork align="center">
@@ -801,6 +806,7 @@ Legend:
   <back>
     <references title="Informative References">
     &I-D.draft-contreras-teas-slice-nbi;
+    &I-D.draft-nsdt-teas-ns-framework;
 <!-- &I-D.draft-homma-rtgwg-slice-gateway;-->
     &I-D.draft-ietf-teas-sf-aware-topo-model;
     &I-D.draft-ietf-teas-enhanced-vpn;
