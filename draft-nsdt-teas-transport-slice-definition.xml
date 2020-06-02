@@ -783,90 +783,7 @@ Legend:
     </section>
 
 
-    <section title="Appendix A">
-    <section title="On Meeting guarantees of service objectives (tbd)">
-	<t>
-		Due to overloading of the term, a further discussion is added to highlight two
-		aspects of isolation, first the resolution of isolation of an objective (as described above) and second, the dedicated use or 
-        a hard-separation perspective of the resource.
-	</t>
-	<t>
-	Providing a hard resolution of guarantee for the characteristics of a
-	transport slice means that the behavior and performance of other transport slices
-   should not impact that slice, even if they run over the same underlying
-   infrastructure or use logically shared network resources.
-   </t>
-   <t>
-	  In the context of soft resolution of guarantees, since the transport slices are
-	  logically partitioned over the
-      shared resources, a certain degree of commitment to the guarantee
-      is expected even when it is not hard.  When the shared resource
-      pools begin to become saturated, SLO violations can happen,
-      however, impacting only the performance or operation of service
-      associated with the transport slice.
-   </t>
-   <t>
-   This degree of isolation can be derived from availability
-   characteristics requested, such as whether a hard or soft guarantee was
-   requested. Requesting a hard guarantee may commit more resources
-   than would be required for a softer limit.
-   </t>
-   <t> 
-   In addition, resource isolation
-	may be applied to ensure dedicated access to a particular node, for instance. In such
-	requests a dedicated allocation to a link, node and/or other resources to create a
-	transport slice for a particular service. For example, a mission-critical service
-	may ask for a dedicated router and/or a link or port for complete isolation from other
-	services.
-   </t>
-   <t>
-   When realizing a transport slice, a network controller should be
-   responsible for allocating and providing resources according to the specified
-   objectives.
-   </t>
-	<t> SLO violations can occur for two reasons and corresponding statements apply
-	<list style="symbols">
-	<t>
-      Shared resource interference: i.e. multiple transport slices
-      simultaneously share the same resource, and one of them consume
-      the resource in surplus.  If the SLO guarantees are strictly
-      required, then the network controller can be informed of this by
-      requesting a hard guarantee. Note that the terms hard and soft
-      limit are requirement oriented and different from what is
-	  specified in, <xref target="I-D.ietf-teas-enhanced-vpn"/>). </t>
-
-     <t>
-	   Resource failure or fault occurs, such as a link or node failure.
-       Where it is important to defend against these, the relevant
-       characteristics on resource redundancy (and perhaps some
-       other characteristics on restoration speed and other factors) need to be specified.
-	     <list style="symbols">
-		  <t> Restoration isolation: the network is not impacted for a period
-			  longer than the given time. For example,
-			  failover or the service restoration takes no longer than
-			  some number of seconds. This is specified by Availability  SLO.</t>
-		  <t> Protection isolation: the network path is protected with specified backup path.
-		    This is specified by Availability  SLO. </t>
-          </list>
-          </t>
-      </list>
-	  </t>
-		  <t> SLA vs SLO discussion: In defining transport slices, the term  SLO instead of SLA is used even though SLAs are more 
-          commonly used term by the operators. SLOs are definitive and measurable parameters associated with a service, therefore, 
-          network resource and connectivity requirements are defined accurately. In contrast, service level agreements represent contracts 
-          for a service between a service provider and a service consumer (or subscriber). Providers then translate SLA into SLO; 
-          these translations vary from one service provider to the other. Therefore, all through within the scope of transport slices term SLO 
-          will be used. 
-          </t>
-</section>
-<section title="level of confidence">
-	<t> Additionally, transport slices should be able to specify 'level of confidence'. It the ability to satisfy a "guarantee" of an objective. The confidence level (or level of commitment) may be expressed separately for each of the above objectives. For example 
-packet loss objective can be no more than 10% loss - 99.9999% of the time, while bandwidth can not go below 1% 99.99% of the time.
-</t>
-<t>Since no guarantee can prevent from hardware failures (such as losing a node),  additional protection against such issues is possible by specifying confidence level characteristics. 
-The confidence does not say anything about the specific implementation of how it is are achieved. Different implementations might use different techniques, from avoiding oversubsription to dedicating particular links or their virtual fractions to particular transport slices. <!--For further discussion, see Appendix A.--> </t>
-	</section>
-</section>
+ 
   </middle>
 
   <!-- ***** BACK MATTER ***** -->
@@ -1016,5 +933,93 @@ The confidence does not say anything about the specific implementation of how it
       </reference>
 
     </references>
+
+       <section title="Discussions">
+    <section title="On Meeting guarantees of service objectives (tbd)">
+	<t>
+		Due to overloading of the term, a further discussion is added to highlight two
+		aspects of isolation, first the resolution of isolation of an objective (as described above) and second, the dedicated use or 
+        a hard-separation perspective of the resource.
+	</t>
+	<t>
+	Providing a hard resolution of guarantee for the characteristics of a
+	transport slice means that the behavior and performance of other transport slices
+   should not impact that slice, even if they run over the same underlying
+   infrastructure or use logically shared network resources.
+   </t>
+   <t>
+	  In the context of soft resolution of guarantees, since the transport slices are
+	  logically partitioned over the
+      shared resources, a certain degree of commitment to the guarantee
+      is expected even when it is not hard.  When the shared resource
+      pools begin to become saturated, SLO violations can happen,
+      however, impacting only the performance or operation of service
+      associated with the transport slice.
+   </t>
+   <t>
+   This degree of isolation can be derived from availability
+   characteristics requested, such as whether a hard or soft guarantee was
+   requested. Requesting a hard guarantee may commit more resources
+   than would be required for a softer limit.
+   </t>
+   <t> 
+   In addition, resource isolation
+	may be applied to ensure dedicated access to a particular node, for instance. In such
+	requests a dedicated allocation to a link, node and/or other resources to create a
+	transport slice for a particular service. For example, a mission-critical service
+	may ask for a dedicated router and/or a link or port for complete isolation from other
+	services.
+   </t>
+   <t>
+   When realizing a transport slice, a network controller should be
+   responsible for allocating and providing resources according to the specified
+   objectives.
+   </t>
+	<t> SLO violations can occur for two reasons and corresponding statements apply
+	<list style="symbols">
+	<t>
+      Shared resource interference: i.e. multiple transport slices
+      simultaneously share the same resource, and one of them consume
+      the resource in surplus.  If the SLO guarantees are strictly
+      required, then the network controller can be informed of this by
+      requesting a hard guarantee. Note that the terms hard and soft
+      limit are requirement oriented and different from what is
+	  specified in, <xref target="I-D.ietf-teas-enhanced-vpn"/>). </t>
+
+     <t>
+	   Resource failure or fault occurs, such as a link or node failure.
+       Where it is important to defend against these, the relevant
+       characteristics on resource redundancy (and perhaps some
+       other characteristics on restoration speed and other factors) need to be specified.
+	     <list style="symbols">
+		  <t> Restoration isolation: the network is not impacted for a period
+			  longer than the given time. For example,
+			  failover or the service restoration takes no longer than
+			  some number of seconds. This is specified by Availability  SLO.</t>
+		  <t> Protection isolation: the network path is protected with specified backup path.
+		    This is specified by Availability  SLO. </t>
+          </list>
+          </t>
+      </list>
+	  </t>
+		  <t> SLA vs SLO discussion: In defining transport slices, the term  SLO instead of SLA is used even though SLAs are more 
+          commonly used term by the operators. SLOs are definitive and measurable parameters associated with a service, therefore, 
+          network resource and connectivity requirements are defined accurately. In contrast, service level agreements represent contracts 
+          for a service between a service provider and a service consumer (or subscriber). Providers then translate SLA into SLO; 
+          these translations vary from one service provider to the other. Therefore, all through within the scope of transport slices term SLO 
+          will be used. 
+          </t>
+</section>
+<section title="level of confidence">
+	<t> Additionally, transport slices should be able to specify 'level of confidence'. It the ability to satisfy a "guarantee" of an objective. The confidence level (or level of commitment) may be expressed separately for each of the above objectives. For example 
+packet loss objective can be no more than 10% loss - 99.9999% of the time, while bandwidth can not go below 1% 99.99% of the time.
+</t>
+<t>Since no guarantee can prevent from hardware failures (such as losing a node),  additional protection against such issues is possible by specifying confidence level characteristics. 
+The confidence does not say anything about the specific implementation of how it is are achieved. Different implementations might use different techniques, from avoiding oversubsription to dedicating particular links or their virtual fractions to particular transport slices. <!--For further discussion, see Appendix A.--> </t>
+	</section>
+</section>
+
+
+
   </back>
 </rfc>
